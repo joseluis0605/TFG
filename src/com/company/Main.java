@@ -1,9 +1,12 @@
 package com.company;
 
+import java.io.File;
+
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        System.out.println("prueba1");
+        CargadorFile cargar= new CargadorFile("prueba1.txt" );
+        cargar.leerFile();
     }
 }
