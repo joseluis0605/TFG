@@ -1,5 +1,4 @@
 package com.company;
-
 import java.io.File;
 import java.util.Scanner;
 
@@ -13,21 +12,24 @@ public class CargadorFile {
     }
 
     public void leerFile(){
-
         Scanner entrada= null; // puntero tipo Scanner apuntando a null (inicializar)
         File fichero= new File(this.path); //abrimos el fichero cuya ruta esta en path
         try {
-            entrada= new Scanner(fichero); //recogemos datos del FICHERO y lo guardamos en entrada
+            entrada= new Scanner(fichero);
+
+            // AQUI VA LA LECTURA LINEA A LINEA DEL GRAFO
             while (entrada.hasNextLine()){ //mientras el fichero no termine
                 String frase = entrada.nextLine(); //recogemos la frase completa
                 System.out.println(frase); //imprimimos
             }
+            //***************************
+
         }catch (Exception exception){
             System.out.println(exception.getMessage()); //imprimir mensaje de error si hay fallo en el TRY
         }finally {
             try {
                 if (entrada!=null) {
-                    entrada.close(); //cerramos el fichero
+                    entrada.close(); 
                 }
             }catch (Exception exception){
                 System.out.println(exception.getMessage());
