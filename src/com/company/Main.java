@@ -27,9 +27,12 @@ public class Main {
         miLista.add(aristas);
         miLista.add(aristas2);
 
-        List<Integer> lista2= null;
+        List<Integer> lista2;
         lista2= miLista.get(1);
         System.out.println(lista2);
+
+        miLista.get(0).add(56);
+        System.out.println(miLista);
 
         //CREAR MAPA ---> OPCION 2
     }
