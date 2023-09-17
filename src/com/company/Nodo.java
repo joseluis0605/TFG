@@ -24,34 +24,65 @@ public class Nodo {
                 '}';
     }
 
+    public void separatorProblemRandom (Nodo [] grafo, int numeroNodos){
+        Nodo grafoCopia[]= grafo;
+
+        Random randomSeed= new Random();
+        int max= numeroNodos;
+        int min= 0;
+        int nodoRandom= randomSeed.nextInt(max-min)+min; //incluimos min y excluimos max
+
+        /*
+        voy a tener que hacer lo siguiente
+
+        - definimos el numero maximo que va a tener cada componente conexa
+        - while hasta que todas las componentes tengan como maximo esa
+            - eliminamos el nodo random
+            - contamos los nodos que tiene cada componente conexa
+         */
+    }
+
+    public void recorridoProfundidad(Nodo [] grafo){
+        Set<Integer> visitado = new HashSet<>();
+        int numeroNodos= grafo.length;
+        for (int i=0;i<numeroNodos;i++){
+            if (!visitado.contains(i)){
+                recorrido(i, grafo, visitado);
+                
+            }
+        }
+    }
+
+    private void recorrido(int nodo, Nodo[] grafo, Set<Integer> visitado) {
+        visitado.add(nodo);
+        System.out.println(nodo);
 
 
-
-
-
-
-
-
-
-
+    }
 
 
     public static void main(String[] args) {
         System.out.println("dime numero de nodos");
         Scanner input= new Scanner(System.in);
 
+        //Numero Nodos
         String entrada= input.nextLine();
         int numeroNodos= Integer.parseInt(entrada);
 
-        Nodo grafo[]= new Nodo[numeroNodos]; //array de nodos
+        //Numero Aristas
+        entrada= input.nextLine();
+        int numeroAristas= Integer.parseInt(entrada);
 
+
+        //Creamos el grafo
+        Nodo grafo[]= new Nodo[numeroNodos]; //array de nodos
         for (int i=0;i<numeroNodos;i++){
             Nodo nodo=new Nodo(i);
             grafo[i]=nodo;
         }
 
-
-        for (int i=0;i<numeroNodos;i++){
+        //Insertamos las aristas
+        for (int i=0;i<numeroAristas;i++){
             entrada= input.nextLine();
             String linea[]=entrada.split(" "); //tenemos en el array el nodo y su vecino
             int nodo= Integer.parseInt(linea[0]);

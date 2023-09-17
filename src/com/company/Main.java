@@ -13,7 +13,6 @@ public class Main {
         cargar.leerFile();
         */
 
-        /*
         // CREAR LISTAS DE LISTAS ---> OPCION 1
         List<Integer>aristas= new ArrayList<>();
         aristas.add(1);
@@ -28,7 +27,7 @@ public class Main {
         miLista.add(aristas);
         miLista.add(aristas2);
 
-        List<Integer> lista2;
+        List<Integer> lista2= null;
         lista2= miLista.get(1);
         System.out.println(lista2);
 
@@ -36,11 +35,5 @@ public class Main {
         System.out.println(miLista);
 
         //CREAR MAPA ---> OPCION 2
-        */
-
-
-
-
-
     }
 }
