@@ -2,12 +2,15 @@ package com.company.practicasAlgoritmos;
 
 import com.company.Main;
 
+import java.sql.PreparedStatement;
 import java.util.*;
 
 public class RecorridoProfundidad {
 
     public static void main(String[] args) {
         // write your code here
+        long tiempoInicio= System.nanoTime();
+
         Scanner input= new Scanner(System.in);
         int numeroNodos= Integer.parseInt(input.nextLine());
         int numeroAristas= Integer.parseInt(input.nextLine());
@@ -28,6 +31,11 @@ public class RecorridoProfundidad {
             grafo[vecino].add(nodo);
         }
         RecorridoProfundidad.profundidad(grafo, numeroNodos);
+
+        long tiempoFin= System.nanoTime();
+        long resultado= tiempoFin-tiempoInicio;
+
+        System.out.println("el resultado es: "+resultado);
     }
     public static void profundidad(List<Integer> grafo[], int numeroNodos){
         Set<Integer> visitado= new HashSet<>();
@@ -48,3 +56,12 @@ public class RecorridoProfundidad {
         }
     }
 }
+/*
+10
+5
+0 1
+1 5
+2 4
+4 9
+3 9
+ */
