@@ -43,11 +43,5 @@ public class ResolucionBruta {
             grafo[vecino].add(nodo);
         }
 
-
-
-
-
-
-
     }
 }
