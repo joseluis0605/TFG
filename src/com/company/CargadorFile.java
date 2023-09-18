@@ -28,12 +28,12 @@ public class CargadorFile {
             System.out.println(exception.getMessage()); //imprimir mensaje de error si hay fallo en el TRY
         }finally {
             try {
-                if (entrada!=null) {
-                    entrada.close(); 
+                if (entrada != null) {
+                    entrada.close();
                 }
-            }catch (Exception exception){
+            } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
-            }
+        }
     }
 }

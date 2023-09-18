@@ -45,7 +45,7 @@ public class DeteccionComponentesConexas {
 
     }
 
-    private static Set<Integer>[] eliminarNodo(Set<Integer>[] copia, int numeroNodos, int i) {
+    public static Set<Integer>[] eliminarNodo(Set<Integer>[] copia, int numeroNodos, int i) {
         for (int j = 0; j < numeroNodos; j++) {
             if (copia[j].contains(i)) {
                 copia[j].remove(i);

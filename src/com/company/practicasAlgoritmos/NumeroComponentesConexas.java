@@ -41,7 +41,6 @@ public class NumeroComponentesConexas {
             }else {
                 contador++;
             }
-
         }
         System.out.println(contador);
     }
