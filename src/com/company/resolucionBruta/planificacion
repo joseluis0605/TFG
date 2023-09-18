@@ -2,4 +2,4 @@ GRAFO ---> lista de listas
 
 1. Eliminar NODO y meterlo dentro de un solucionario (SET)
 2. Contamos los nodos de las componentes conexas
-3. Se va a repetir hasta que todo tenga alpha nodos como maximo
+3. Se va a repetir hasta que todo tenga alpha nodos como maximo (suponemos que alpha vale N (preguntar duda valor))

@@ -1,7 +1,5 @@
 package com.company.resolucionBruta;
-
 import java.util.*;
-
 
 public class ResolucionBruta {
 
