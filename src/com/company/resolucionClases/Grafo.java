@@ -1,4 +1,4 @@
-package com.company.enDesarrollo;
+package com.company.resolucionClases;
 
 import java.util.*;
 
