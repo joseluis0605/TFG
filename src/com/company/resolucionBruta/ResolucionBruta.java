@@ -7,9 +7,13 @@ public class ResolucionBruta {
 
         Scanner input= new Scanner(System.in);
 
-        //numero nodos
-        int numeroNodos = Integer.parseInt(input.nextLine());
-        int numeroAristas = Integer.parseInt(input.nextLine());
+        //numero nodos, aristas y valor alpha
+        String entrada= input.nextLine();
+        String primeraLinea[]= entrada.split(" ");
+
+        int numeroNodos = Integer.parseInt(primeraLinea[0]);
+        int numeroAristas = Integer.parseInt(primeraLinea[1]);
+        double valorAlpha= Double.parseDouble(primeraLinea[2]);
 
         //creamos  el grafo
         Set<Integer> grafo[]= new Set[numeroNodos];
@@ -27,27 +31,38 @@ public class ResolucionBruta {
             grafo[nodo].add(vecino);
             grafo[vecino].add(nodo);
         }
+        double tamComponenteConexa= valorAlpha*numeroNodos;
+        System.out.println(tamComponenteConexa);
+        System.out.println("valor de alpha--> "+valorAlpha);
 
-        ResolucionBruta.resolucionProblema(grafo, numeroNodos, 3);
+        ResolucionBruta.resolucionProblema(grafo, numeroNodos, tamComponenteConexa);
 
     }
 
-    public static void resolucionProblema(Set<Integer> grafo[], int numeroNodos, int tamComponenteConexa){
+    public static void resolucionProblema(Set<Integer> grafo[], int numeroNodos, double tamComponenteConexa){
 
         //generamos solucion --> set
         Set<Integer> solucion= new HashSet<>();
 
         Set<Integer> copiaGrafo[]= copiarGrafo(grafo, numeroNodos);
+        List<Integer> solucionSinOrdenar= new ArrayList<>();
 
 
         while (!encontradaSolcuion(copiaGrafo, numeroNodos, tamComponenteConexa)){
             Random random= new Random();
             int nodoRandom= random.nextInt(numeroNodos);
-            copiaGrafo= eliminarNodo(copiaGrafo, nodoRandom, numeroNodos);
+            if (!solucion.contains(nodoRandom)){
+                solucionSinOrdenar.add(nodoRandom);
+            }
             solucion.add(nodoRandom);
-        }
+            copiaGrafo= eliminarNodo(copiaGrafo, nodoRandom, numeroNodos);
 
+
+        }
+        System.out.println(numeroNodos);
         System.out.println(solucion);
+        System.out.println(solucionSinOrdenar);
+        System.out.println(solucionSinOrdenar.size());
         
     }
 
@@ -64,7 +79,7 @@ public class ResolucionBruta {
 
 
     /////////// COMPROBAR QUE TODAS LAS COMPONENTES CONEXAS TENGAN MAXIMO N NODOS
-     public static boolean encontradaSolcuion(Set<Integer>[] grafo, int numeroNodos, int tamComponenteConexa) {
+     public static boolean encontradaSolcuion(Set<Integer>[] grafo, int numeroNodos, double tamComponenteConexa) {
         Set<Integer> visitado= new HashSet<>();
         int contador;
         for (int i = 0; i < numeroNodos; i++) {
@@ -102,8 +117,7 @@ public class ResolucionBruta {
     }
 }
 /*
-6
-5
+6 5 0.2
 0 1
 1 2
 2 3
