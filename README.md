@@ -19,7 +19,9 @@ La estrucura que hemos seguido para la resolucion es la siguiente:
 
 -copia del grafo, para no tocar el primero
 -crear un set<Integer> solucion;
+
 WHILE TODAS LAS COMPONENTES CONEXAS NO TENGAN MENOS DE N NODOS HACER:
+
 - elegir nodo random
 - eliminarlo
 - contar el número de nodos de cada componente conexa
