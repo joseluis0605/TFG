@@ -12,8 +12,11 @@ Enlace del problema --> https://link.springer.com/chapter/10.1007/978-3-030-0349
 
 
 En la primera fase, vamos a resolverlo escogiendo los nodos al azar. Para ello, vamos a usar la clase Random, que nos generará un entero random del 0 hasta n-1 siendo n el numero de nodos del grafo. La estructura que hemos utilizado, es un conjunto de conjuntos: 
+
 (Set<Integer> grafo[] = new Set[numeroNodos]);
+
 La estrucura que hemos seguido para la resolucion es la siguiente:
+
 -copia del grafo, para no tocar el primero
 -crear un set<Integer> solucion;
 WHILE TODAS LAS COMPONENTES CONEXAS NO TENGAN MENOS DE N NODOS HACER:
