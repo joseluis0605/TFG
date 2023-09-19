@@ -1,13 +1,13 @@
 package com.company;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import com.company.enDesarrollo.Grafo;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        Grafo grafo= new Grafo();
+        grafo.separatorProblemRANDOM();
 
     }
 }
