@@ -1,4 +1,4 @@
-package com.company.resolucionBruta;
+package com.company.primera_fase.resolucionBruta;
 import java.util.*;
 
 public class ResolucionBruta {

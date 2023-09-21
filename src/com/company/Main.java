@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.resolucionClases.Grafo;
+import com.company.primera_fase.resolucionClases.Grafo;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package com.company.resolucionClases;
+package com.company.primera_fase.resolucionClases;
 
 import java.util.HashSet;
 import java.util.Set;
