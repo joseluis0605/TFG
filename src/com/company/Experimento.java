@@ -12,7 +12,7 @@ public class Experimento {
     public static void main(String[] args) {
 
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 15; i++) {
             long timeStart= System.currentTimeMillis();
             //obtenemos el listado con el nombre de todos los fichero
             List<String> listadoFicheros= FileNameList.getFileNameList();
@@ -35,12 +35,15 @@ public class Experimento {
 
 
             Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-            AlgoritmoRandom.AlgoritmoRandom(instancia);
+            int solucion= AlgoritmoRandom.AlgoritmoRandom(instancia);
 
             long timeFinish= System.currentTimeMillis();
 
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
-            System.out.println(tiempoEjecucion);
+            //System.out.println(tiempoEjecucion);
+
+            String informacion= "Algoritmo random, nombre--> "+nombrePrimero+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            EscrituraCSV.addCSV(informacion);
         }
 
 

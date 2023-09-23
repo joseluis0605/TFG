@@ -27,4 +27,8 @@ public class Solucion {
     public boolean existElement(int nodoRandom) {
         return this.solucion.contains(nodoRandom);
     }
+
+    public int size(){
+        return this.solucion.size();
+    }
 }
