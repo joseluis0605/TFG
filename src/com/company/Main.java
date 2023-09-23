@@ -9,5 +9,9 @@ public class Main {
         Grafo grafo= new Grafo();
         grafo.separatorProblemRANDOM();
 
+
+
+        //TIEMPO LIMITE
+
     }
 }

@@ -51,8 +51,8 @@ public class Grafo {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void separatorProblemRANDOM(){
-        Set<Integer> solucion= new HashSet<>();
-        List<Integer> solucionSinOrdenar= new ArrayList<>();
+        var solucion = new HashSet<Integer>(1000);
+        var solucionSinOrdenar = new ArrayList<Integer>();
 
         while (!encontradaSolcuion()){
             //elegimos nodo random
