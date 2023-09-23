@@ -35,15 +35,19 @@ public class Experimento {
 
 
             Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-            int solucion= AlgoritmoRandom.AlgoritmoRandom(instancia);
-
+            int solucion= AlgoritmoVorazSimple.algoritmoVorazSimple(instancia);
             long timeFinish= System.currentTimeMillis();
 
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
-            //System.out.println(tiempoEjecucion);
 
-            String informacion= "Algoritmo random, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
-            EscrituraCSV.addCSV(informacion);
+            // ALGORITMO RANDOM
+            //String informacion= "Algoritmo random, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            //EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
+
+
+            // ALGORITMO VORAZ SIMPLE
+            String informacion= "Algoritmo vorazSimple, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
         }
 
 
