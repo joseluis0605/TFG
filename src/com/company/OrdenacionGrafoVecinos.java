@@ -22,6 +22,7 @@ public class OrdenacionGrafoVecinos {
         }
 
         Collections.sort(listado, new ComparadorNumeroAristas());
+        //System.out.println(listado);
         return listado;
     }
 

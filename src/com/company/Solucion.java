@@ -31,4 +31,8 @@ public class Solucion {
     public int size(){
         return this.solucion.size();
     }
+
+    public void mostrar(){
+        System.out.println(solucion);
+    }
 }
