@@ -20,10 +20,8 @@ public class Random {
                 solucion.addNodo(nodoRandom);
             }
             eliminarNodo(instancia, nodoRandom);
-
-
         }
-
+        solucion.mostrarSolcion();
     }
 
     private void eliminarNodo(Instancia instancia, int nodoEliminado) {
