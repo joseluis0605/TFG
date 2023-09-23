@@ -23,4 +23,8 @@ public class Solucion {
     public void mostrarSolcion(){
         System.out.println(solucion.size());
     }
+
+    public boolean existElement(int nodoRandom) {
+        return this.solucion.contains(nodoRandom);
+    }
 }

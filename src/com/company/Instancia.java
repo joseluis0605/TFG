@@ -50,4 +50,48 @@ public class Instancia {
         this.grafo[inicio].add(fin);
         this.grafoCopia[fin].add(inicio);
     }
+
+
+    // generamos los getter y los setter por defecto
+
+
+    public Set<Integer>[] getGrafo() {
+        return grafo;
+    }
+
+    public void setGrafo(Set<Integer>[] grafo) {
+        this.grafo = grafo;
+    }
+
+    public Set<Integer>[] getGrafoCopia() {
+        return grafoCopia;
+    }
+
+    public void setGrafoCopia(Set<Integer>[] grafoCopia) {
+        this.grafoCopia = grafoCopia;
+    }
+
+    public int getNumeroNodos() {
+        return numeroNodos;
+    }
+
+    public void setNumeroNodos(int numeroNodos) {
+        this.numeroNodos = numeroNodos;
+    }
+
+    public double getAlpha() {
+        return alpha;
+    }
+
+    public void setAlpha(double alpha) {
+        this.alpha = alpha;
+    }
+
+    public double getTamComponenteConexa() {
+        return tamComponenteConexa;
+    }
+
+    public void setTamComponenteConexa(double tamComponenteConexa) {
+        this.tamComponenteConexa = tamComponenteConexa;
+    }
 }
