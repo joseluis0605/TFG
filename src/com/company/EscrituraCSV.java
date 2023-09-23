@@ -12,7 +12,7 @@ public class EscrituraCSV {
         String ruta= "C:\\Users\\USUARIO\\Desktop\\URJC\\4º Ciberseguridad\\TFG\\AlphaSeparatorProblem\\archivosCSV\\AlgoritmoRandom.csv";
 
         try{
-            FileWriter escritura= new FileWriter(ruta);
+            FileWriter escritura= new FileWriter(ruta, true);
             escritura.append(prueba);
             escritura.append("\n");
             escritura.close();

@@ -1,1 +1,15 @@
-Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt, numero nodos--> 74, tiempo ejecucion--> 0.009
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 0, numero nodos--> 67, tiempo ejecucion--> 0.063
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 1, numero nodos--> 66, tiempo ejecucion--> 0.018
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 2, numero nodos--> 71, tiempo ejecucion--> 0.075
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 3, numero nodos--> 66, tiempo ejecucion--> 0.043
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 4, numero nodos--> 60, tiempo ejecucion--> 0.028
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 5, numero nodos--> 65, tiempo ejecucion--> 0.019
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 6, numero nodos--> 64, tiempo ejecucion--> 0.008
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 7, numero nodos--> 61, tiempo ejecucion--> 0.011
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 8, numero nodos--> 61, tiempo ejecucion--> 0.012
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 9, numero nodos--> 58, tiempo ejecucion--> 0.008
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 10, numero nodos--> 66, tiempo ejecucion--> 0.006
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 11, numero nodos--> 60, tiempo ejecucion--> 0.01
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 12, numero nodos--> 68, tiempo ejecucion--> 0.002
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 13, numero nodos--> 62, tiempo ejecucion--> 0.019
+Algoritmo random, nombre--> erdos_renyi_100_0.05_0.2_0.txt iteracion--> 14, numero nodos--> 64, tiempo ejecucion--> 0.014

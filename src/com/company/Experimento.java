@@ -42,7 +42,7 @@ public class Experimento {
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
             //System.out.println(tiempoEjecucion);
 
-            String informacion= "Algoritmo random, nombre--> "+nombrePrimero+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            String informacion= "Algoritmo random, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
             EscrituraCSV.addCSV(informacion);
         }
 
