@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class CargadorFile {
 
+    /*
+    En esta clase vamos a recibir el nombre del archivo y vamos a abrir el fichero
+    para extraer todo el contenido.
+    Dicho contenido va a estar almacenado en una lista, en donde cada linea va a ser un elemento
+     */
+
     private String path;
 
     public CargadorFile(String nombre){
@@ -41,5 +47,13 @@ public class CargadorFile {
             }
         }
         return null;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

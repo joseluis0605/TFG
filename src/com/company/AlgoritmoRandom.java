@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Set;
 
-public class Random {
+public class AlgoritmoRandom {
 
 /*
     Esta es la clase constructivo, donde vamos a recibir la instancia, que en nuestro caso seria un grafo (array de set)
@@ -11,7 +11,7 @@ public class Random {
     El algoritmo que vamos a usar va a ser el RANDOM, donde vamos a coger los nodos al azar
  */
 
-    public Random(Instancia instancia){
+    public static void AlgoritmoRandom(Instancia instancia){
         Solucion solucion= new Solucion(); //creamos la solucion
         while (!ComprobarSolucion.comprobarSolcion(instancia)){
             java.util.Random random= new java.util.Random();
@@ -24,7 +24,7 @@ public class Random {
         solucion.mostrarSolcion();
     }
 
-    private void eliminarNodo(Instancia instancia, int nodoEliminado) {
+    private static void eliminarNodo(Instancia instancia, int nodoEliminado) {
         for (Set<Integer> aristas: instancia.getGrafoCopia()) {
             if (aristas.contains(nodoEliminado)){
                 aristas.remove(nodoEliminado);

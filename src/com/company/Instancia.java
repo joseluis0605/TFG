@@ -17,7 +17,7 @@ public class Instancia {
     private double alpha;
     private double tamComponenteConexa;
 
-    public Instancia(int numeroNodos, int alpha, List<String> aristas){
+    public Instancia(int numeroNodos, double alpha, List<String> aristas){
         this.grafo=new Set[numeroNodos];
         this.grafoCopia= new Set[numeroNodos];
         this.numeroNodos= numeroNodos;
@@ -48,7 +48,9 @@ public class Instancia {
     // insertamos aristas en el grafo
     private void insertarArista(int inicio, int fin) {
         this.grafo[inicio].add(fin);
+        this.grafo[fin].add(inicio);
         this.grafoCopia[fin].add(inicio);
+        this.grafoCopia[inicio].add(fin);
     }
 
 
