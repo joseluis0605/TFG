@@ -11,7 +11,7 @@ public class AlgoritmoRandom {
     El algoritmo que vamos a usar va a ser el RANDOM, donde vamos a coger los nodos al azar
  */
 
-    public static int AlgoritmoRandom(Instancia instancia){
+    public static int algoritmoRandom(Instancia instancia){
         Solucion solucion= new Solucion(); //creamos la solucion
         while (!ComprobarSolucion.comprobarSolcion(instancia)){
             java.util.Random random= new java.util.Random();

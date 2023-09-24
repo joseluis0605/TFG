@@ -12,14 +12,14 @@ public class Experimento {
     public static void main(String[] args) {
 
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 200; i++) {
             long timeStart= System.currentTimeMillis();
             //obtenemos el listado con el nombre de todos los fichero
             List<String> listadoFicheros= FileNameList.getFileNameList();
 
 
             // sacamos el nombre del primer fichero
-            String nombrePrimero= listadoFicheros.get(0);
+            String nombrePrimero = listadoFicheros.get(0);
 
             //obtenemos contenido fichero
             CargadorFile lectura= new CargadorFile(nombrePrimero);
@@ -33,7 +33,7 @@ public class Experimento {
             double alpha= Double.parseDouble(array[2]);
             contenidoFile.remove(0);
 
-
+            //CAMBIAR!!!!!!!!!
             Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
             int solucion= AlgoritmoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
             long timeFinish= System.currentTimeMillis();
@@ -41,7 +41,7 @@ public class Experimento {
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
 
             // ALGORITMO RANDOM
-            //String informacion= "Algoritmo random, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            //String informacion= "Algoritmo random "+nombrePrimero+" "+i+" "+solucion+" "+tiempoEjecucion;
             //EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
 
 
@@ -50,7 +50,7 @@ public class Experimento {
             //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
 
             // ALGORITMO VORAZ ORDENANDO DESPUES DE CADA ELIMINACION
-            String informacion= "Algoritmo voraz complejo, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            String informacion= "Algoritmo voraz complejo,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
             EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
         }
 

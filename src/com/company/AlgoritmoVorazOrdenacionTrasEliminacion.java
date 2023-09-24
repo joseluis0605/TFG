@@ -17,7 +17,6 @@ public class AlgoritmoVorazOrdenacionTrasEliminacion {
             eliminarNodo(instancia, nextNodo);
             listado.remove(0);
         }
-        solucion.mostrar();
         return solucion.size();
     }
 

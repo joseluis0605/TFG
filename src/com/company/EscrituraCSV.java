@@ -16,7 +16,6 @@ public class EscrituraCSV {
             escritura.append(prueba);
             escritura.append("\n");
             escritura.close();
-            System.out.println("escrito correctamente");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
