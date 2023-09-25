@@ -35,8 +35,8 @@ public class CargadorExperimentoVorazSimple {
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
 
             // ALGORITMO VORAZ SIMPLE
-            //String informacion= "Algoritmo vorazSimple,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
+            String informacion= "Algoritmo vorazSimple,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
+            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
 
         }
     }
