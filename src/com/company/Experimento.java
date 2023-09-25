@@ -35,23 +35,23 @@ public class Experimento {
 
             //CAMBIAR!!!!!!!!!
             Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-            int solucion= AlgoritmoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
+            int solucion= AlgoritmoRandom.algoritmoRandom(instancia);
             long timeFinish= System.currentTimeMillis();
 
             double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
 
             // ALGORITMO RANDOM
-            //String informacion= "Algoritmo random "+nombrePrimero+" "+i+" "+solucion+" "+tiempoEjecucion;
-            //EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
+            String informacion= "Algoritmo random;"+nombrePrimero+";"+i+";"+solucion+";"+tiempoEjecucion;
+            EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
 
 
             // ALGORITMO VORAZ SIMPLE
-            //String informacion= "Algoritmo vorazSimple, nombre--> "+nombrePrimero+" iteracion--> "+i+", numero nodos--> "+solucion+", tiempo ejecucion--> "+tiempoEjecucion;
+            //String informacion= "Algoritmo vorazSimple,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
             //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
 
             // ALGORITMO VORAZ ORDENANDO DESPUES DE CADA ELIMINACION
-            String informacion= "Algoritmo voraz complejo,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
+            //String informacion= "Algoritmo voraz complejo,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
+            //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
         }
 
 
