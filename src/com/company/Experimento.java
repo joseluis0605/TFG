@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Experimento {
 
@@ -11,53 +10,32 @@ public class Experimento {
 
     public static void main(String[] args) {
 
+        Scanner input= new Scanner(System.in);
 
-        for (int i = 0; i < 200; i++) {
-            long timeStart= System.currentTimeMillis();
-            //obtenemos el listado con el nombre de todos los fichero
-            List<String> listadoFicheros= FileNameList.getFileNameList();
+        //mostramos las opciones
+        Menu.mostrarMenu();
 
-
-            // sacamos el nombre del primer fichero
-            String nombrePrimero = listadoFicheros.get(0);
-
-            //obtenemos contenido fichero
-            CargadorFile lectura= new CargadorFile(nombrePrimero);
-            List<String> contenidoFile= new ArrayList<>(lectura.leerFile());
-
-            // sacamos la primera linea de datos, numeroNodos, numeroAristas, valor alpha
-            String lineaDatos= contenidoFile.get(0);
-            String array[]= lineaDatos.split(" ");
-
-            int numeroNodos= Integer.parseInt(array[0]);
-            double alpha= Double.parseDouble(array[2]);
-            contenidoFile.remove(0);
-
-            //CAMBIAR!!!!!!!!!
-            Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-            int solucion= AlgoritmoRandom.algoritmoRandom(instancia);
-            long timeFinish= System.currentTimeMillis();
-
-            double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
-
-            // ALGORITMO RANDOM
-            String informacion= "Algoritmo random;"+nombrePrimero+";"+i+";"+solucion+";"+tiempoEjecucion;
-            EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
+        //introducion del algoritmo que queremos ejecutar
+        int opcion= input.nextInt();
 
 
-            // ALGORITMO VORAZ SIMPLE
-            //String informacion= "Algoritmo vorazSimple,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
+        switch (opcion){
+            case 1: //algoritmo random
+                CargadorExperimentoRandom.cargadorRandom();
+            break;
 
-            // ALGORITMO VORAZ ORDENANDO DESPUES DE CADA ELIMINACION
-            //String informacion= "Algoritmo voraz complejo,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            //EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
+            case 2: //algoritmo voraz simple
+                CargadorExperimentoVorazSimple.cargarVorazSimple();
+            break;
+
+            case 3: //algoritmo voraz con ordenacion en cada iteracion
+                CargadorExperimentoVorazOrdenacion.cargarVorazOrdenacion();
+            break;
+
+            default:
+                System.out.println("error al introducir el id del algoritmo");
+
         }
-
-
-
-
-
 
     }
 }
