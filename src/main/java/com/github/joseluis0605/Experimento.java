@@ -25,11 +25,13 @@ public class Experimento {
             break;
 
             case 2: //algoritmo voraz simple
-                CargadorExperimentoVorazSimple.cargarVorazSimple();
+                CargadorExperimentoVorazSimple cargadorExperimentoVoraz= new CargadorExperimentoVorazSimple();
+                cargadorExperimentoVoraz.cargadorVoraz();
             break;
 
             case 3: //algoritmo voraz con ordenacion en cada iteracion
-                CargadorExperimentoVorazOrdenacion.cargarVorazOrdenacion();
+                CargadorExperimentoVorazOrdenacion cargadorExperimentoVorazOrdenacion= new CargadorExperimentoVorazOrdenacion();
+                cargadorExperimentoVorazOrdenacion.cargadorVoraz();
             break;
 
             default:

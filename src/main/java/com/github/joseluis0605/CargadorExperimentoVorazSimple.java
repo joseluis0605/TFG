@@ -1,43 +1,38 @@
 package com.github.joseluis0605;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CargadorExperimentoVorazSimple {
+public class CargadorExperimentoVorazSimple extends CargadorExperimento{
 
-    public static void cargarVorazSimple(){
+    public CargadorExperimentoVorazSimple(){
+        super("Experimento simple");
+    }
+
+    public void cargadorVoraz(){
+        //obtenemos el listado con el nombre de todos los fichero
+        List<String> listadoFicheros= super.getListadoFicheros();
+
+        // sacamos el nombre del primer fichero
+        String nombrePrimero = super.getNombrePrimero();
+
+        //obtenemos contenido fichero
+        List<String> contenidoFile= super.getContenidoFichero(nombrePrimero);
+
+        // numero nodos y valor alpha
+        int numeroNodos= super.numeroNodos(contenidoFile);
+        double alpha= super.valorAlpha(contenidoFile);
+        contenidoFile.remove(0);
+
+        //creacion instancia
+        Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
+
         for (int i = 0; i < 200; i++) {
-            //obtenemos el listado con el nombre de todos los fichero
-            List<String> listadoFicheros= FileNameList.getFileNameList();
-
-
-            // sacamos el nombre del primer fichero
-            String nombrePrimero = listadoFicheros.get(0);
-
-            //obtenemos contenido fichero
-            CargadorFile lectura= new CargadorFile(nombrePrimero);
-            List<String> contenidoFile= new ArrayList<>(lectura.leerFile());
-
-            // sacamos la primera linea de datos, numeroNodos, numeroAristas, valor alpha
-            String lineaDatos= contenidoFile.get(0);
-            String array[]= lineaDatos.split(" ");
-
-            int numeroNodos= Integer.parseInt(array[0]);
-            double alpha= Double.parseDouble(array[2]);
-            contenidoFile.remove(0);
-
-            //CAMBIAR!!!!!!!!!
-            Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-
-            long timeStart= System.currentTimeMillis();
+            long timeStart= super.getTime();
             int solucion= AlgoritmoVorazSimple.algoritmoVorazSimple(instancia);
-            long timeFinish= System.currentTimeMillis();
-            double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
+            long timeFinish= super.getTime();
+            double tiempoEjecucion= super.tiempoEjecucion(timeStart, timeFinish);
 
-            // ALGORITMO VORAZ SIMPLE
-            String informacion= "Algoritmo vorazSimple,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
-
+            super.generarInformacionCSV("Voraz Simple", nombrePrimero, i, solucion, tiempoEjecucion);
         }
     }
 }

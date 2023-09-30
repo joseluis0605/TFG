@@ -1,45 +1,38 @@
 package com.github.joseluis0605;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CargadorExperimentoVorazOrdenacion {
+public class CargadorExperimentoVorazOrdenacion extends CargadorExperimento{
 
-    public static void cargarVorazOrdenacion(){
+    public CargadorExperimentoVorazOrdenacion(){
+        super("Experimento voraz complejo");
+    }
 
-        //ejecutamos 200 veces el mismo fichero
+    public void cargadorVoraz(){
+        //obtenemos el listado con el nombre de todos los fichero
+        List<String> listadoFicheros= super.getListadoFicheros();
+
+        // sacamos el nombre del primer fichero
+        String nombrePrimero = super.getNombrePrimero();
+
+        //obtenemos contenido fichero
+        List<String> contenidoFile= super.getContenidoFichero(nombrePrimero);
+
+        // numero nodos y valor alpha
+        int numeroNodos= super.numeroNodos(contenidoFile);
+        double alpha= super.valorAlpha(contenidoFile);
+        contenidoFile.remove(0);
+
+        //creacion instancia
+        Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
 
         for (int i = 0; i < 200; i++) {
-            //obtenemos el listado con el nombre de todos los fichero
-            List<String> listadoFicheros= FileNameList.getFileNameList();
+            long timeStart= super.getTime();
+            int solucion= AlgoritmoVorazSimple.algoritmoVorazSimple(instancia);
+            long timeFinish= super.getTime();
+            double tiempoEjecucion= super.tiempoEjecucion(timeStart, timeFinish);
 
-
-            // sacamos el nombre del primer fichero
-            String nombrePrimero = listadoFicheros.get(0);
-
-            //obtenemos contenido fichero
-            CargadorFile lectura= new CargadorFile(nombrePrimero);
-            List<String> contenidoFile= new ArrayList<>(lectura.leerFile());
-
-            // sacamos la primera linea de datos, numeroNodos, numeroAristas, valor alpha
-            String lineaDatos= contenidoFile.get(0);
-            String array[]= lineaDatos.split(" ");
-
-            int numeroNodos= Integer.parseInt(array[0]);
-            double alpha= Double.parseDouble(array[2]);
-            contenidoFile.remove(0);
-
-            //CAMBIAR!!!!!!!!!
-            Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-
-            long timeStart= System.currentTimeMillis();
-            int solucion= AlgoritmoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
-            long timeFinish= System.currentTimeMillis();
-            double tiempoEjecucion= (double)( (timeFinish-timeStart) / 1000.0);
-
-            // ALGORITMO VORAZ ORDENANDO DESPUES DE CADA ELIMINACION
-            String informacion= "Algoritmo voraz complejo,"+nombrePrimero+","+i+","+solucion+","+tiempoEjecucion;
-            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
+            super.generarInformacionCSV("Voraz complejo", nombrePrimero, i, solucion, tiempoEjecucion);
         }
     }
 }
