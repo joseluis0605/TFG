@@ -27,6 +27,17 @@ public class Instancia {
         crearGrafo(aristas);
     }
 
+    public void mostrarGrafo(){
+        for (Set<Integer> aristas : grafo){
+            System.out.println(aristas);
+        }
+        System.out.println("**********************");
+
+        for (Set<Integer> aristas : grafoCopia){
+            System.out.println(aristas);
+        }
+    }
+
     // inicializamos el grafo
     private void iniciarGrafo() {
         for (int i = 0; i < this.numeroNodos; i++) {

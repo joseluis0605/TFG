@@ -23,21 +23,29 @@ public class CargadorExperimentoRandom extends CargadorExperimento{
         double alpha= super.valorAlpha(contenidoFile);
         contenidoFile.remove(0);
 
-        //creacion instancia
-        Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
-        Solucion solucionFinal= new Solucion();
 
-        for (int i = 0; i < 200; i++) {
+
+        for (int i = 0; i < 1; i++) {
+            //creacion instancia
+            Instancia instancia= new Instancia(numeroNodos, alpha, contenidoFile);
+            Solucion solucionFinal= new Solucion();
+
             long timeStart= super.getTime();
             Solucion solucion= AlgoritmoRandom.algoritmoRandom(instancia);
             long timeFinish= super.getTime();
             solucionFinal= solucion;
-            double tiempoEjecucion= super.tiempoEjecucion(timeStart, timeFinish);
 
+            //instancia.mostrarGrafo();
+
+            double tiempoEjecucion= super.tiempoEjecucion(timeStart, timeFinish);
+            //solucionFinal.mostrar();
             super.generarInformacionCSV("Random", nombrePrimero, i, solucion.size(), tiempoEjecucion);
+
+            GeneradorGrafo crearGrafo = new GeneradorGrafo();
+            crearGrafo.writeSolutionToDisk(instancia, solucionFinal);
         }
-        GeneradorGrafo crearGrafo = new GeneradorGrafo();
-        crearGrafo.writeSolutionToDisk(instancia, solucionFinal);
+
+
     }
 
 

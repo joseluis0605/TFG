@@ -49,7 +49,8 @@ public class GeneradorGrafo {
         graph.nodeAttrs().add("fillcolor", "white");
         graph.nodeAttrs().add("fixedsize", "true");
         graph.nodeAttrs().add("shape", "circle");
-        var instance = instanciaSolucion.getGrafoCopia();
+        //var instance = instanciaSolucion.getGrafoCopia();
+
         int nNodes = instanciaSolucion.getNumeroNodos();
         MutableNode[] gNodes = new MutableNode[nNodes];
 
@@ -66,15 +67,16 @@ public class GeneradorGrafo {
         }
 
         // ARISTAS
-        for (int i = 0; i < instanciaSolucion.getNumeroNodos(); i++) {
-            for (Set<Integer> listadoAristas : instance) {
-                for (Integer vecino : listadoAristas) {
-                    if (vecino > i) {
-                        gNodes[i].addLink(gNodes[vecino]);
-                    }
+        int nodoActual= 0;
+        for (Set<Integer> listadoAristas : instanciaSolucion.getGrafoCopia()) {
+            for (Integer vecino : listadoAristas) {
+                if (vecino > nodoActual) {
+                    gNodes[nodoActual].addLink(gNodes[vecino]);
                 }
             }
+            nodoActual++;
         }
+
 
         Graphviz.useEngine(new GraphvizJdkEngine());
         return Graphviz.fromGraph(graph);
