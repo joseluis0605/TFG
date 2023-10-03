@@ -76,7 +76,13 @@ public abstract class CargadorExperimento {
 
     protected void generarInformacionCSV(String nombreAlgoritmo, String nombreInstancia, int iteracion, int solucion, Number tiempoEjecucion){
         String informacion = nombreAlgoritmo + ";" + nombreInstancia + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion);
+        if (this.nombreExperimento.equals("Experimento random"))
         EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
+        else if (this.nombreExperimento.equals("Experimento simple")){
+            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
+        }else if (this.nombreExperimento.equals("Experimento voraz complejo")){
+            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
+        }
     }
 
 }

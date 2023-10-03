@@ -28,7 +28,7 @@ public class CargadorExperimentoVorazOrdenacion extends CargadorExperimento{
 
         for (int i = 0; i < 200; i++) {
             long timeStart= super.getTime();
-            int solucion= AlgoritmoVorazSimple.algoritmoVorazSimple(instancia);
+            int solucion= AlgoritmoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
             long timeFinish= super.getTime();
             double tiempoEjecucion= super.tiempoEjecucion(timeStart, timeFinish);
 
