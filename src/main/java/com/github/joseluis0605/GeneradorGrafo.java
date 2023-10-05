@@ -68,7 +68,7 @@ public class GeneradorGrafo {
 
         // ARISTAS
         int nodoActual= 0;
-        for (Set<Integer> listadoAristas : instanciaSolucion.getGrafoCopia()) {
+        for (Set<Integer> listadoAristas : instanciaSolucion.getGrafo()) {
             for (Integer vecino : listadoAristas) {
                 if (vecino > nodoActual) {
                     gNodes[nodoActual].addLink(gNodes[vecino]);

@@ -16,7 +16,7 @@ public class Experimento {
 
         //introducion del algoritmo que queremos ejecutar
         int opcion= input.nextInt();
-
+        double tiempoStartPrograma= System.nanoTime();
 
         switch (opcion){
             case 1: //algoritmo random
@@ -38,6 +38,8 @@ public class Experimento {
                 System.out.println("error al introducir el id del algoritmo");
 
         }
+        double tiempoEndPrograma= System.nanoTime();
+        System.out.println("tiempo ejecucion total--> "+ (tiempoEndPrograma-tiempoStartPrograma));
 
     }
 }
