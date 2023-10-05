@@ -5,7 +5,7 @@ import java.util.List;
 public class CargadorExperimentoVorazSimple extends CargadorExperimento{
 
     public CargadorExperimentoVorazSimple(){
-        super("Experimento simple");
+        super("Experimento Voraz simple");
     }
 
     public void cargadorVoraz(){

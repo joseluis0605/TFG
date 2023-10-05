@@ -1,11 +1,15 @@
 package com.github.joseluis0605;
-
 import java.util.List;
+
+/*
+En esta clase vamos a aplicar el algoritmo random y vamos a ejecutarlo 500 veces por cada una de las
+instancias
+ */
 
 public class CargadorExperimentoRandom extends CargadorExperimento{
 
     public CargadorExperimentoRandom(){
-        super("Experimento random");
+        super("Experimento Random");
     }
 
     public void cargadorRandom(){
@@ -22,7 +26,7 @@ public class CargadorExperimentoRandom extends CargadorExperimento{
 
 
 
-        for (String fichero: listadoFicheros) {
+        for (String fichero: listadoFicheros) { //recorremos los ficheros
             for (int i = 0; i < 1000; i++) {
                 //obtenemos contenido fichero
                 List<String> contenidoFile = super.getContenidoFichero(fichero);
@@ -40,14 +44,14 @@ public class CargadorExperimentoRandom extends CargadorExperimento{
                 long timeFinish = super.getTime();
 
                 tiempoEjecucion = super.tiempoEjecucion(timeStart, timeFinish);
-                super.generarInformacionCSV("Random", fichero, i, solucion.size(), tiempoEjecucion);
+                super.generarInformacionCSV("ALGORITMO RANDOM", fichero, i, solucion.size(), tiempoEjecucion);
             }
             //añadimos al tiempo total
             tiempoTotal = tiempoTotal + tiempoEjecucion;
 
             //creamos imagen
             //GeneradorGrafo crearGrafo = new GeneradorGrafo();
-            //crearGrafo.writeSolutionToDisk(instancia, solucionFinal);
+            //crearGrafo.writeSolutionToDisk(instancia, solucionFinal, ruta, nombreFile);
         }
 
 

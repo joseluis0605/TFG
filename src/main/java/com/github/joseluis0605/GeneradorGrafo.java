@@ -19,10 +19,10 @@ import java.util.Set;
 public class GeneradorGrafo {
 
     // metodo con el que llamamos desde experimento
-    public void writeSolutionToDisk(Instancia instanciaSolucion, Solucion arrayEliminados) {
+    public void writeSolutionToDisk(Instancia instanciaSolucion, Solucion arrayEliminados, String ruta, String nombreFile) {
         byte[] bytes = toPNG(instanciaSolucion, arrayEliminados); //pasamos instancia y array de solucion, y obtenemos el array de bytes
         try {
-            Files.write(Path.of("C:\\Users\\USUARIO\\Desktop\\URJC\\4º Ciberseguridad\\TFG\\AlphaSeparatorProblem\\imagenesGrafo", "imagenRandom.png"), bytes);
+            Files.write(Path.of(ruta, nombreFile), bytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
