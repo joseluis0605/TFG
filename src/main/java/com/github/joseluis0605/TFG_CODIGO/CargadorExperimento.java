@@ -80,10 +80,10 @@ public abstract class CargadorExperimento {
         EscrituraCSV.addCSV(informacion, "AlgoritmoRandom.csv");
         else if (this.nombreExperimento.equals("Experimento Voraz simple")){
             EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimple.csv");
+        }else if (this.nombreExperimento.equals("Experimento Voraz Simple Tiempo")){
+            EscrituraCSV.addCSV(informacion, "AlgoritmoVorazSimpleTiempo.csv");
         }else if (this.nombreExperimento.equals("Experimento Voraz Complejo")){
             EscrituraCSV.addCSV(informacion, "AlgoritmoVorazComplejo.csv");
-        }else if (this.nombreExperimento.equals("Experimento Random Mejor")){
-            EscrituraCSV.addCSV(informacion, "AlgoritmoRandomMejorOpcion.csv");
         }
     }
 

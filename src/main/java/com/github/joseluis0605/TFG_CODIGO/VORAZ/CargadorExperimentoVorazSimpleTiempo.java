@@ -1,7 +1,8 @@
-package com.github.joseluis0605.TFG_CODIGO.RANDOM;
+package com.github.joseluis0605.TFG_CODIGO.VORAZ;
 
 import com.github.joseluis0605.TFG_CODIGO.CargadorExperimento;
 import com.github.joseluis0605.TFG_CODIGO.Instancia;
+import com.github.joseluis0605.TFG_CODIGO.RANDOM.AlgoritmoRandom;
 import com.github.joseluis0605.TFG_CODIGO.Solucion;
 
 import java.util.List;
@@ -12,10 +13,10 @@ las instancias
 en cuando a las imagens, voy a crear el mejor resultado de cada instancia
  */
 
-public class CargadorExperimentoRandomMejorOpcion extends CargadorExperimento {
+public class CargadorExperimentoVorazSimpleTiempo extends CargadorExperimento {
 
-    public CargadorExperimentoRandomMejorOpcion(){
-        super("Experimento Random Mejor Opcion");
+    public CargadorExperimentoVorazSimpleTiempo(){
+        super("Experimento Voraz Simple Tiempo");
     }
 
     public void CargadorRandomMejorOpcion (){
