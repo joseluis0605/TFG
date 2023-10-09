@@ -22,7 +22,8 @@ public class GeneradorGrafo {
     public void writeSolutionToDisk(Instancia instanciaSolucion, Solucion arrayEliminados, String ruta, String nombreFile) {
         byte[] bytes = toPNG(instanciaSolucion, arrayEliminados); //pasamos instancia y array de solucion, y obtenemos el array de bytes
         try {
-            Files.write(Path.of(ruta, nombreFile), bytes);
+            String nombre= nombreFile+".png";
+            Files.write(Path.of(ruta, nombre), bytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +50,6 @@ public class GeneradorGrafo {
         graph.nodeAttrs().add("fillcolor", "white");
         graph.nodeAttrs().add("fixedsize", "true");
         graph.nodeAttrs().add("shape", "circle");
-        //var instance = instanciaSolucion.getGrafoCopia();
 
         int nNodes = instanciaSolucion.getNumeroNodos();
         MutableNode[] gNodes = new MutableNode[nNodes];

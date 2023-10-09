@@ -1,6 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO.RANDOM;
 
 import com.github.joseluis0605.TFG_CODIGO.CargadorExperimento;
+import com.github.joseluis0605.TFG_CODIGO.GeneradorGrafo;
 import com.github.joseluis0605.TFG_CODIGO.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.Solucion;
 
@@ -21,18 +22,19 @@ public class CargadorExperimentoRandom extends CargadorExperimento {
     public void cargadorRandom(){
         //obtenemos el listado con el nombre de todos los fichero
         List<String> listadoFicheros= super.getListadoFicheros();
-
-
-        // sacamos el nombre del primer fichero
-        //String nombrePrimero = super.getNombrePrimero();
+        String ruta= "C:\\Users\\USUARIO\\Desktop\\URJC\\4º Ciberseguridad\\TFG\\AlphaSeparatorProblem\\imagenesGrafo\\experimentoRandom\\";
 
         //creamos el contador de tiempo total
-        double tiempoTotal=0.0;
-        double tiempoEjecucion=0;
+        double tiempoTotal=0.0; //tenemos el tiempo total, sumatorio de tiempos
+
+        //variables mejor opciones
+        Solucion mejorSolucion=null;
+        Instancia mejorInstancia= null;
+        int mejorSolucionTam=999999;
+        int mejorIteracion=-1;
 
 
-
-        for (String fichero: listadoFicheros) { //recorremos los ficheros
+        for (String fichero : listadoFicheros){
             for (int i = 0; i < 1000; i++) {
                 //obtenemos contenido fichero
                 List<String> contenidoFile = super.getContenidoFichero(fichero);
@@ -48,20 +50,29 @@ public class CargadorExperimentoRandom extends CargadorExperimento {
                 long timeStart = super.getTime();
                 Solucion solucion = AlgoritmoRandom.algoritmoRandom(instancia);
                 long timeFinish = super.getTime();
+                double tiempoEjecucion = super.tiempoEjecucion(timeStart, timeFinish);
+                tiempoTotal= tiempoTotal+tiempoEjecucion;
 
-                tiempoEjecucion = super.tiempoEjecucion(timeStart, timeFinish);
-                super.generarInformacionCSV("ALGORITMO RANDOM", fichero, i, solucion.size(), tiempoEjecucion);
+                //si es mejor solucion, cambiamos ---> tamaño del set sea menor
+                if (solucion.size()<mejorSolucionTam){
+                    mejorSolucionTam= solucion.size();
+                    mejorInstancia= instancia;
+                    mejorSolucion= solucion;
+                    mejorIteracion=i;
+                }
+
             }
-            //añadimos al tiempo total
-            tiempoTotal = tiempoTotal + tiempoEjecucion;
+            super.generarInformacionCSV("ALGORITMO RANDOM", fichero, mejorIteracion, mejorSolucionTam, tiempoTotal);
+            GeneradorGrafo generadorGrafo= new GeneradorGrafo();
+            generadorGrafo.writeSolutionToDisk(mejorInstancia, mejorSolucion, ruta, fichero);
 
-            //creamos imagen
-            //GeneradorGrafo crearGrafo = new GeneradorGrafo();
-            //crearGrafo.writeSolutionToDisk(instancia, solucionFinal, ruta, nombreFile);
+            //inicializamos
+            mejorSolucionTam= 999999;
+            mejorInstancia= null;
+            mejorSolucion= null;
+            mejorIteracion=0;
+            tiempoTotal=0;
         }
-
-
     }
-
-
 }
+

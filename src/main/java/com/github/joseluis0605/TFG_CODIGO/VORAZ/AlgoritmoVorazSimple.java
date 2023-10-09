@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class AlgoritmoVorazSimple {
 
-    public static int algoritmoVorazSimple(Instancia instancia){
+    public static Solucion algoritmoVorazSimple(Instancia instancia){
         List<Tupla> listado= OrdenacionGrafoVecinos.ordenarMasMenosGrafo(instancia);
         Solucion solucion= new Solucion(); //creamos la solucion
         while (!ComprobarSolucion.comprobarSolcion(instancia)){
@@ -19,7 +19,7 @@ public class AlgoritmoVorazSimple {
             eliminarNodo(instancia, nextNodo);
             listado.remove(0);
         }
-        return solucion.size();
+        return solucion;
     }
 
     private static void eliminarNodo(Instancia instancia, int nodoEliminado) {
