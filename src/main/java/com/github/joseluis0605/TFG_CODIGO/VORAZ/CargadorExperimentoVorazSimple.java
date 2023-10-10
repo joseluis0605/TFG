@@ -43,12 +43,5 @@ public class CargadorExperimentoVorazSimple extends CargadorExperimento {
             String rutaCompleta= Ruta.getRuta()+"experimentoVorazSimple";
             imagenGrafo.writeSolutionToDisk(instancia, solucion, rutaCompleta, fichero);
         }
-
-
-
-
-
-
-
     }
 }
