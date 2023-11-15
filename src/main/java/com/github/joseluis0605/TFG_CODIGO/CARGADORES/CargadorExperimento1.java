@@ -64,5 +64,6 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
     @Override
     protected void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero) {
         String ruta= RutaImagenes.getRuta()+"experimento1";
-        GenDOT.writeSolutionToDisk(instanciaPuntero, mejorSolucionArray, ruta, nombreFichero);    }
+        GenDOT.writeSolutionToDisk(instanciaPuntero, mejorSolucionArray, ruta, nombreFichero);
+    }
 }

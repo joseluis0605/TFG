@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class ComprobarSolucion {
 
-    //En esta clase vamos a comprobar que se cumple la solucion, es decir, que todas las componentes tengan tamaño maximo
-    // n * alpha
+//En esta clase vamos a comprobar que se cumple la solucion, es decir, que todas las componentes tengan tamaño maximo
+// n * alpha
 
     public static boolean comprobarSolcion(Instancia instancia) {
         Set<Integer> visitado= new HashSet<>();
