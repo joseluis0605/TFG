@@ -36,8 +36,10 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
 
                 tiempoTotal= super.tiempoEjecucion(inicio,fin);
                 // generamos imagenes y csv
-                escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
-                generarImagen(instancia, solucion ,nombreFichero);
+                if (esComponenteConexa(instancia)){
+                    escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
+                    generarImagen(instancia, solucion ,nombreFichero);
+                }
             }
         }
     }

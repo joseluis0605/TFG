@@ -50,8 +50,10 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             }
 
             // generamos imagenes y csv
-            escribirCSV(nombreFichero, mejorIteracion, mejorSolucionNumero, tiempoTotal);
-            generarImagen(instanciaPuntero, mejorSolucionArray,nombreFichero);
+            if (super.esComponenteConexa(instanciaPuntero)){
+                escribirCSV(nombreFichero, mejorIteracion, mejorSolucionNumero, tiempoTotal);
+                generarImagen(instanciaPuntero, mejorSolucionArray,nombreFichero);
+            }
         }
     }
 

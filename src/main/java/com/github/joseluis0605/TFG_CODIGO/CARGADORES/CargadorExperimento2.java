@@ -36,8 +36,10 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
 
                 tiempoTotal= super.tiempoEjecucion(inicio,fin);
                 // generamos imagenes y csv
-                escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
-                generarImagen(instancia, solucion ,nombreFichero);
+                if (super.esComponenteConexa(instancia)){
+                    escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
+                    generarImagen(instancia, solucion ,nombreFichero);
+                }
             }
         }
     }
@@ -50,5 +52,6 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
     @Override
     protected void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero) {
         String ruta= RutaImagenes.getRuta()+"experimento2";
-        GenDOT.writeSolutionToDisk(instanciaPuntero, mejorSolucionArray, ruta, nombreFichero);    }
+        GenDOT.writeSolutionToDisk(instanciaPuntero, mejorSolucionArray, ruta, nombreFichero);
+    }
 }

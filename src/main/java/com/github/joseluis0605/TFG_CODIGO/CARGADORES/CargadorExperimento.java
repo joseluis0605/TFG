@@ -1,6 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.NumeroComponentesConexas;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
 public abstract class CargadorExperimento {
@@ -23,4 +24,8 @@ public abstract class CargadorExperimento {
     protected abstract void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero);
 
     public abstract void resolucion();
+
+    protected boolean esComponenteConexa(Instancia instancia){
+        return NumeroComponentesConexas.numeroComponentesConexas(instancia)==1;
+    }
 }

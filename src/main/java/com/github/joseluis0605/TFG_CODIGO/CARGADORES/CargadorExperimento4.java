@@ -33,7 +33,9 @@ tiempo: el tiempo de cada ejecucion
 
                     tiempoTotal= super.tiempoEjecucion(inicio,fin);
                     // generamos csv
-                    escribirCSV(nombreFichero, j, solucion.size(), tiempoTotal);
+                    if (esComponenteConexa(instancia)){
+                        escribirCSV(nombreFichero, j, solucion.size(), tiempoTotal);
+                    }
                 }
             }
         }
