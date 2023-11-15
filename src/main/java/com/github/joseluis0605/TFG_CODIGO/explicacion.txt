@@ -49,3 +49,10 @@ CLASE EXPERIMENTO QUE ES DONDE LLAMO A LO QUE SE EJECUTA     OK
 ##############################################
 pintar solucion
 excel
+
+
+#############################################
+cambiar algoritmos por constructivos : contructivoRandom...
+probar backtracking para instancias pequeñas
+mejorar el voraz partiendo de la solucion y ver que nodos son innecesarios, tener en cuenta los vecinos que no sean dentro de la solucion
+busqueda local: best improvement y first improvement

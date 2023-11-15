@@ -1,17 +1,13 @@
 package com.github.joseluis0605.TFG_CODIGO;
 
-import com.github.joseluis0605.PRUEBAS_INICIALES.practicasAlgoritmos.primera_fase.resolucionClases.Grafo;
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorExperimento;
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorExperimento2;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        Grafo grafo= new Grafo();
-        grafo.separatorProblemRANDOM();
 
-
-
-        //TIEMPO LIMITE
-
+        CargadorExperimento cargadorExperimento2= new CargadorExperimento2();
+        cargadorExperimento2.resolucion();
     }
 }
