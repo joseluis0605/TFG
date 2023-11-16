@@ -8,7 +8,6 @@ import java.util.Set;
 public class ConstructivoVorazOrdenacionTrasEliminacion {
 
     public static Solucion algoritmoVorazComplejo(Instancia instancia){
-
         Solucion solucion= new Solucion(); //creamos la solucion
         while (!ComprobarSolucion.comprobarSolcion(instancia)){
             List<Tupla> listado= OrdenacionGrafoVecinos.ordenarMasMenosGrafo(instancia);
