@@ -17,6 +17,20 @@ public class Instancia {
     private double alpha;
     private double tamComponenteConexa;
 
+    //COPIAMOS UN GRAFO EN OTRO GRAFO
+   public Instancia (Instancia otraInstancia){
+       this.numeroNodos= otraInstancia.numeroNodos;
+       this.alpha= otraInstancia.alpha;
+       this.tamComponenteConexa= otraInstancia.tamComponenteConexa;
+       this.grafo=new Set[numeroNodos];
+       this.grafoCopia= new Set[numeroNodos];
+       iniciarGrafo();
+       for (int i = 0; i < this.numeroNodos; i++) {
+           this.grafo[i].addAll(otraInstancia.getGrafo()[i]);
+           this.grafoCopia[i].addAll(otraInstancia.getGrafoCopia()[i]);
+       }
+   }
+
     public Instancia(List<String> contenidoFichero){
         primeraLinea(contenidoFichero.get(0));
         contenidoFichero.remove(0);
@@ -54,20 +68,36 @@ public class Instancia {
     }
 
     // insertamos aristas en el grafo
-    private void insertarArista(int inicio, int fin) {
+    public void insertarArista(int inicio, int fin) {
         this.grafo[inicio].add(fin);
         this.grafo[fin].add(inicio);
         this.grafoCopia[fin].add(inicio);
         this.grafoCopia[inicio].add(fin);
     }
 
-    public void mostrarGrafo(){
+    public void mostrarGrafoOriginal(){
         int nodo=0;
         for (Set<Integer> aristas : grafo){
             System.out.println(nodo+"-->"+aristas);
             nodo++;
         }
     }
+
+    public void mostrarGrafoCopia(){
+        int nodo=0;
+        for (Set<Integer> aristas : grafoCopia){
+            System.out.println(nodo+"-->"+aristas);
+            nodo++;
+        }
+    }
+
+    public void eliminarNodo(int nodo){
+        for (int i = 0; i < this.numeroNodos; i++) {
+            this.grafoCopia[i].remove(nodo);
+            this.grafoCopia[nodo].clear();
+        }
+    }
+
 
     // generamos los getter y los setter por defecto
 

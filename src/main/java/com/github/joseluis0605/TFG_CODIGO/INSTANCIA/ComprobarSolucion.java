@@ -10,10 +10,9 @@ public class ComprobarSolucion {
 
     public static boolean comprobarSolcion(Instancia instancia) {
         Set<Integer> visitado= new HashSet<>();
-        int contador;
         for (int i = 0; i < instancia.getNumeroNodos(); i++) {
             if (!visitado.contains(i)){
-                contador= recorrido(instancia.getGrafoCopia(), visitado, i);
+                int contador= recorrido(instancia.getGrafoCopia(), visitado, i);
                 if (contador>instancia.getTamComponenteConexa()){
                     return false;
                 }
@@ -21,6 +20,7 @@ public class ComprobarSolucion {
         }
         return true;
     }
+
     private static int recorrido(Set<Integer>[] grafo, Set<Integer> visitado, int nodo) {
         visitado.add(nodo);
         int contador = 1;
