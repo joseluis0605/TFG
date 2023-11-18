@@ -1,11 +1,13 @@
 package com.github.joseluis0605.TFG_CODIGO;
 
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -26,28 +28,21 @@ public class Main {
         cargadorExperimento5.resolucion();
  */
 
-        List<String> listadoNombreFichero = new ArrayList<>(FileNameList.getFileNameList());
-        String nombre= listadoNombreFichero.get(0);
-        List<String> contenido = CargadorFile.leerFile(nombre);
 
-        Instancia instanciaOriginal= new Instancia(contenido);
-        //COPIAMOS
-        Instancia instanciaCopia= new Instancia(instanciaOriginal);
+        String nombre= FileNameList.getFileNameList().get(0);
+        List<String> contenido= CargadorFile.leerFile(nombre);
+        Instancia instancia= new Instancia(contenido);
+        instancia.eliminarNodo(4);
+        instancia.eliminarNodo(6);
+        instancia.eliminarNodo(7);
 
-        instanciaOriginal.eliminarNodo(4);
+        Solucion solucion= new Solucion();
+        solucion.addNodo(4);
+        solucion.addNodo(6);
+        solucion.addNodo(7);
 
-        instanciaOriginal.mostrarGrafoCopia();
-        instanciaCopia.mostrarGrafoCopia();
+        Set<Integer> mejorada= MejoraSolucion.mejorarSolucion(solucion, instancia);
 
-
-
-
-
-        //Set<Integer> mejorada= MejoraSolucion.mejorarSolucion(solucionPrimera, instanciaOriginal);
-        //System.out.println(mejorada);
-
-
-        System.out.println("tamaño maximo de la componente: "+ instanciaOriginal.getTamComponenteConexa());
-
+        System.out.println(mejorada);
     }
 }

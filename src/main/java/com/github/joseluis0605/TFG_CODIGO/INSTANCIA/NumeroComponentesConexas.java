@@ -11,7 +11,7 @@ public class NumeroComponentesConexas {
 
         for (int i = 0; i < grafo.getNumeroNodos(); i++) {
             if (!visitado.contains(i)){
-                recorrido(grafo.getGrafoCopia(), i,visitado);
+                recorrido(grafo.getGrafo(), i,visitado);
                 contador++;
             }
         }

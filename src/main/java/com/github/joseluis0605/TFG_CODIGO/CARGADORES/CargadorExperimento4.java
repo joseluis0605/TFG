@@ -22,18 +22,23 @@ tiempo: el tiempo de cada ejecucion
             String nombreFichero= FileNameList.getFileNameList().get(i);
             double tiempoTotal;
 
-            for (int j = 0; j < 1000; j++) {
-                List <String> contenido= CargadorFile.leerFile(nombreFichero);
-                if (contenido!=null){
-                    Instancia instancia= new Instancia(contenido);
+            //comprobamos que es una unica componente conexa
+            List<String> informacionGrafo= CargadorFile.leerFile(nombreFichero);
+            Instancia comprobadora= new Instancia(informacionGrafo);
 
-                    long inicio= super.getTime();
-                    Solucion solucion = ConstructivoVoraz.algoritmoVorazSimple(instancia);
-                    long fin= super.getTime();
+            if (super.esComponenteConexa(comprobadora)){
+                for (int j = 0; j < 1000; j++) {
+                    List <String> contenido= CargadorFile.leerFile(nombreFichero);
+                    if (contenido!=null){
+                        Instancia instancia= new Instancia(contenido);
 
-                    tiempoTotal= super.tiempoEjecucion(inicio,fin);
-                    // generamos csv
-                    if (esComponenteConexa(instancia)){
+                        long inicio= super.getTime();
+                        Solucion solucion = ConstructivoVoraz.algoritmoVorazSimple(instancia);
+                        long fin= super.getTime();
+
+                        tiempoTotal= super.tiempoEjecucion(inicio,fin);
+
+                        // generamos csv
                         escribirCSV(nombreFichero, j, solucion.size(), tiempoTotal);
                     }
                 }

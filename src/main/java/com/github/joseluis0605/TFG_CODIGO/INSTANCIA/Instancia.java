@@ -98,6 +98,13 @@ public class Instancia {
         }
     }
 
+    public void restablecerGrafo(){
+        for (int i = 0; i < this.numeroNodos; i++) {
+            this.grafoCopia[i].clear();
+            this.grafoCopia[i].addAll(this.getGrafo()[i]);
+        }
+    }
+
 
     // generamos los getter y los setter por defecto
 

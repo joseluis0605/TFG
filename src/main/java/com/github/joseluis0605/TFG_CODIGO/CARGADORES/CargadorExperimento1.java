@@ -30,27 +30,31 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             double tiempoTotal=0;
             Instancia instanciaPuntero= null;
 
-            for (int i = 0; i < 400.000; i++) {
-                List <String> contenido= CargadorFile.leerFile(nombreFichero);
-                if (contenido!=null){
-                    Instancia instancia= new Instancia(contenido);
-                    instanciaPuntero= instancia;
+            //comprobamos que es una unica componente conexa
+            List<String> informacionGrafo= CargadorFile.leerFile(nombreFichero);
+            Instancia comprobadora= new Instancia(informacionGrafo);
 
-                    long inicio= super.getTime();
-                    Solucion solucion = ConstructivoRandom.algoritmoRandom(instancia);
-                    long fin= super.getTime();
+            if (super.esComponenteConexa(comprobadora)){
+                for (int i = 0; i < 400.000; i++) {
+                    List <String> contenido= CargadorFile.leerFile(nombreFichero);
+                    if (contenido!=null){
+                        Instancia instancia= new Instancia(contenido);
+                        instanciaPuntero= instancia;
 
-                    tiempoTotal= tiempoTotal + super.tiempoEjecucion(inicio,fin);
-                    if (solucion.size() < mejorSolucionNumero){
-                        mejorSolucionNumero= solucion.size();
-                        mejorSolucionArray.setSolucion(solucion.getSolucion());
-                        mejorIteracion=i;
+                        long inicio= super.getTime();
+                        Solucion solucion = ConstructivoRandom.algoritmoRandom(instancia);
+                        long fin= super.getTime();
+
+                        tiempoTotal= tiempoTotal + super.tiempoEjecucion(inicio,fin);
+                        if (solucion.size() < mejorSolucionNumero){
+                            mejorSolucionNumero= solucion.size();
+                            mejorSolucionArray.setSolucion(solucion.getSolucion());
+                            mejorIteracion=i;
+                        }
                     }
                 }
-            }
 
-            // generamos imagenes y csv
-            if (super.esComponenteConexa(instanciaPuntero)){
+                // generamos imagenes y csv
                 escribirCSV(nombreFichero, mejorIteracion, mejorSolucionNumero, tiempoTotal);
                 generarImagen(instanciaPuntero, mejorSolucionArray,nombreFichero);
             }

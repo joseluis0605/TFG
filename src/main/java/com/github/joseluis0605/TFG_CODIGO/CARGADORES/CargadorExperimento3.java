@@ -24,21 +24,25 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
         List<String> listadoNombreFichero = new ArrayList<>(FileNameList.getFileNameList());
 
         for (String nombreFichero : listadoNombreFichero){
-            double tiempoTotal;
+            //comprobamos que es una unica componente conexa
+            List<String> informacionGrafo= CargadorFile.leerFile(nombreFichero);
+            Instancia comprobadora= new Instancia(informacionGrafo);
 
-            List <String> contenido= CargadorFile.leerFile(nombreFichero);
-            if (contenido!=null){
-                Instancia instancia= new Instancia(contenido);
+            if (super.esComponenteConexa(comprobadora)){
+                double tiempoTotal;
+                List <String> contenido= CargadorFile.leerFile(nombreFichero);
+                if (contenido!=null){
+                    Instancia instancia= new Instancia(contenido);
 
-                long inicio= super.getTime();
-                Solucion solucion = ConstructivoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
-                long fin= super.getTime();
+                    long inicio= super.getTime();
+                    Solucion solucion = ConstructivoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
+                    long fin= super.getTime();
 
-                tiempoTotal= super.tiempoEjecucion(inicio,fin);
-                // generamos imagenes y csv
-                if (esComponenteConexa(instancia)){
+                    tiempoTotal= super.tiempoEjecucion(inicio,fin);
+                    // generamos imagenes y csv
                     escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
                     generarImagen(instancia, solucion ,nombreFichero);
+
                 }
             }
         }
