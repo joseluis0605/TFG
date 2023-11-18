@@ -46,6 +46,9 @@ tiempo: el tiempo de cada ejecucion
     }
 
     @Override
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora) {}
+
+    @Override
     protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {
         String informacion = "Voraz Ordenado Tras Eliminacion Tiempo" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion);
         EscrituraCSV.addCSV(informacion, "experimento5.csv");

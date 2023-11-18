@@ -1,6 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoRandom;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.EscrituraCSV;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
@@ -11,6 +12,7 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class CargadorExperimento1 extends CargadorExperimento{
 /*
@@ -29,6 +31,7 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             Solucion mejorSolucionArray= new Solucion();
             double tiempoTotal=0;
             Instancia instanciaPuntero= null;
+            int tamMejora=0;
 
             //comprobamos que es una unica componente conexa
             List<String> informacionGrafo= CargadorFile.leerFile(nombreFichero);
@@ -50,22 +53,27 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
                             mejorSolucionNumero= solucion.size();
                             mejorSolucionArray.setSolucion(solucion.getSolucion());
                             mejorIteracion=i;
+                            Set<Integer> mejora= MejoraSolucion.mejorarSolucion(solucion, instancia);
+                            tamMejora= mejora.size();
                         }
                     }
                 }
 
                 // generamos imagenes y csv
-                escribirCSV(nombreFichero, mejorIteracion, mejorSolucionNumero, tiempoTotal);
+                escribirCSV_Mejora(nombreFichero, mejorIteracion, mejorSolucionNumero, tiempoTotal, tamMejora);
                 generarImagen(instanciaPuntero, mejorSolucionArray,nombreFichero);
             }
         }
     }
 
     @Override
-    protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {
-        String informacion = "Random" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion);
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora) {
+        String informacion = "Random" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion)+";"+mejora;
         EscrituraCSV.addCSV(informacion, "experimento1.csv");
     }
+
+    @Override
+    protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {}
 
     @Override
     protected void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero) {

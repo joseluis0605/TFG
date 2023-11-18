@@ -1,6 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoVoraz;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.EscrituraCSV;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
@@ -11,6 +12,7 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class CargadorExperimento2 extends CargadorExperimento {
 
@@ -39,18 +41,25 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
                     long fin= super.getTime();
 
                     tiempoTotal= super.tiempoEjecucion(inicio,fin);
+                    //aplicamos mejora
+                    Set<Integer> mejora= MejoraSolucion.mejorarSolucion(solucion, instancia);
+                    int tamMejora= mejora.size();
+
                     // generamos imagenes y csv
-                    escribirCSV(nombreFichero, 1, solucion.size(), tiempoTotal);
+                    escribirCSV_Mejora(nombreFichero, 1, solucion.size(), tiempoTotal, tamMejora);
                     generarImagen(instancia, solucion ,nombreFichero);
                 }
             }
         }
     }
     @Override
-    protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {
-        String informacion = "Voraz" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion);
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int tamMejora) {
+        String informacion = "Voraz" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion)+";"+tamMejora;
         EscrituraCSV.addCSV(informacion, "experimento2.csv");
     }
+
+    @Override
+    protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {}
 
     @Override
     protected void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero) {

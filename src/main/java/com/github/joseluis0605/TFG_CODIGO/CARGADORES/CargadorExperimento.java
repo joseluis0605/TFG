@@ -19,6 +19,8 @@ public abstract class CargadorExperimento {
         return (fin-inicio) / 1e9;
     }
 
+    protected abstract void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora);
+
     protected abstract void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion);
 
     protected abstract void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero);
