@@ -1,6 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.BT;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ContadorSoluciones;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.RutaImagenes;
@@ -39,10 +40,10 @@ public class CargadorBT {
         String ruta= RutaImagenes.getRuta()+"BT_grafoPequeño";
         GenDOT.writeSolutionToDisk(instancia, new Solucion(), ruta, primero);
 
-        System.out.println("entramos");
         int etapa=0;
-        BT.resolucion(solucion, listado, instancia,etapa, instancia.getNumeroNodos());
-
+        ContadorSoluciones contadorSoluciones= new ContadorSoluciones();
+        BT.resolucion(solucion, listado, instancia,etapa, instancia.getNumeroNodos(), contadorSoluciones);
+        System.out.println("soluciones generadas: "+contadorSoluciones.getContador());
 
     }
 }

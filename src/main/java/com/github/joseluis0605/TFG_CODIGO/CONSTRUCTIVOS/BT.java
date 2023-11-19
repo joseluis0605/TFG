@@ -13,7 +13,7 @@ public class BT {
 Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a que si no, el tiempo de ejecucion es infinito
  */
 
-    public static void resolucion(boolean[] solucion, List<Tupla> listado, Instancia instancia, int etapa, int numeroNodos) {
+    public static void resolucion(boolean[] solucion, List<Tupla> listado, Instancia instancia, int etapa, int numeroNodos, ContadorSoluciones contadorSoluciones) {
 
         int intento= 1;
         while (intento>=0){
@@ -34,9 +34,10 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
                             posibleSolucion.add(i);
                         }
                     }
+                    contadorSoluciones.aumentarUnidad();
                     System.out.println("posible solucion: "+posibleSolucion);
                 }else {
-                    resolucion(solucion, listado, instancia, etapa+1, numeroNodos);
+                    resolucion(solucion, listado, instancia, etapa+1, numeroNodos, contadorSoluciones);
                 }
                 //desmarcamos
                 if (intento==0){
