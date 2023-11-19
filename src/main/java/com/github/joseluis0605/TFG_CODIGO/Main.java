@@ -1,5 +1,7 @@
 package com.github.joseluis0605.TFG_CODIGO;
 
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorBT;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -20,6 +22,7 @@ public class Main {
  */
 
 
-
+        CargadorBT cargadorBT= new CargadorBT();
+        cargadorBT.resolucion();
     }
 }

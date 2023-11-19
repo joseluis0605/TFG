@@ -10,7 +10,7 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
 import java.util.List;
 
-public class DetectorComponentesConexas {
+public class CargadorDetectorGrafosMasComponentesConexas {
 /*
 Vamos a generar imagenes de los grafos que no son componentes conexas, por lo tanto, no validos para hacer experimentos
  */
