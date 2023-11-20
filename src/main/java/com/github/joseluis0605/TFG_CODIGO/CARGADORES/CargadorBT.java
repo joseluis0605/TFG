@@ -44,6 +44,5 @@ public class CargadorBT {
         ContadorSoluciones contadorSoluciones= new ContadorSoluciones();
         BT.resolucion(solucion, listado, instancia,etapa, instancia.getNumeroNodos(), contadorSoluciones);
         System.out.println("soluciones generadas: "+contadorSoluciones.getContador());
-
     }
 }
