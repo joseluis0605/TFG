@@ -1,34 +1,20 @@
-package com.github.joseluis0605.TFG_CODIGO;
+package com.github.joseluis0605;
 
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
+import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class Main {
+public class Pruebas {
 
-    public static void main(String[] args) {
-
-        //DetectorComponentesConexas.detectorComponentesConexas();
-/*
-        CargadorExperimento cargadorExperimento1= new CargadorExperimento1();
-        CargadorExperimento cargadorExperimento2= new CargadorExperimento2();
-        CargadorExperimento cargadorExperimento3= new CargadorExperimento3();
-        CargadorExperimento cargadorExperimento4= new CargadorExperimento4();
-        CargadorExperimento cargadorExperimento5= new CargadorExperimento5();
-
-        cargadorExperimento1.resolucion();
-        cargadorExperimento2.resolucion();
-        cargadorExperimento3.resolucion();
-        cargadorExperimento4.resolucion();
-        cargadorExperimento5.resolucion();
- */
-
-
+    @Test
+    public void testMejora(){
         String nombre= FileNameList.getFileNameList().get(0);
         List<String> contenido= CargadorFile.leerFile(nombre);
         Instancia instancia= new Instancia(contenido);
@@ -43,8 +29,23 @@ public class Main {
 
         Set<Integer> mejorada= MejoraSolucion.mejorarSolucion(solucion, instancia);
 
-        System.out.println(mejorada);
+        Set<Integer> mejoraSolucion= Set.of(4,5);
 
+        assert mejorada.equals(mejoraSolucion);
+    }
+
+    @Test
+    public void testOrdenarListaFile(){
+        List<String> listado= FileNameList.getFileNameList();
+
+        List<String> ordenado= FileNameList.getFileNameList();
+        Collections.sort(ordenado);
+
+        assert listado.equals(ordenado);
+
+        for (String nombre: ordenado){
+            System.out.println(nombre);
+        }
 
     }
 }
