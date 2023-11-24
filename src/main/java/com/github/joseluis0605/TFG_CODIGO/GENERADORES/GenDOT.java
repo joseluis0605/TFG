@@ -1,6 +1,5 @@
 package com.github.joseluis0605.TFG_CODIGO.GENERADORES;
 
-import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 import guru.nidi.graphviz.attribute.Color;
 import guru.nidi.graphviz.engine.Format;
@@ -19,8 +18,8 @@ import java.util.Set;
 public class GenDOT {
 
     // metodo con el que llamamos desde experimento
-    public static void writeSolutionToDisk(Instancia instanciaSolucion, Solucion arrayEliminados, String ruta, String nombreFile) {
-        byte[] bytes = toDOT(instanciaSolucion, arrayEliminados); //pasamos instancia y array de solucion, y obtenemos el array de bytes
+    public static void writeSolutionToDisk(Solucion solucion, String ruta, String nombreFile) {
+        byte[] bytes = toDOT(solucion); //pasamos instancia y array de solucion, y obtenemos el array de bytes
         try {
             String nombre= nombreFile+".dot";
             Files.write(Path.of(ruta, nombre), bytes);
@@ -29,8 +28,8 @@ public class GenDOT {
         }
     }
 
-    private static byte[] toDOT(Instancia instanciaResultado, Solucion arrayEliminados) {
-        Graphviz graphviz = buildGraphviz(instanciaResultado, arrayEliminados);
+    private static byte[] toDOT(Solucion solucion) {
+        Graphviz graphviz = buildGraphviz(solucion);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
             graphviz.render(Format.DOT).toOutputStream(baos);
@@ -41,7 +40,7 @@ public class GenDOT {
     }
 
     //creamos el grafo con la clase graphviz
-    private static Graphviz buildGraphviz(Instancia instanciaSolucion, Solucion arrayEliminados) {
+    private static Graphviz buildGraphviz(Solucion solucion) {
         MutableGraph graph = Factory.mutGraph();
         graph.setDirected(false);
         graph.graphAttrs().add("layout", "fdp");
@@ -49,12 +48,12 @@ public class GenDOT {
         graph.nodeAttrs().add("fillcolor", "white");
         graph.nodeAttrs().add("fixedsize", "true");
         graph.nodeAttrs().add("shape", "circle");
-        int nNodes = instanciaSolucion.getNumeroNodos();
+        int nNodes = solucion.getInstanciaOriginal().getNumeroNodos();
         MutableNode[] gNodes = new MutableNode[nNodes];
         // NODOS
         for (int i = 0; i < nNodes; i++) {
             var gNode = Factory.mutNode(String.valueOf(i));
-            if (arrayEliminados .existElement(i)) {
+            if (solucion.existElement(i)) {
                 gNode.add(Color.RED);
             } else {
                 gNode.add(Color.GREEN);
@@ -64,7 +63,7 @@ public class GenDOT {
         }
         // ARISTAS
         int nodoActual= 0;
-        for (Set<Integer> listadoAristas : instanciaSolucion.getGrafo()) {
+        for (Set<Integer> listadoAristas : solucion.getInstanciaOriginal().getGrafo()) {
             for (Integer vecino : listadoAristas) {
                 if (vecino > nodoActual) {
                     gNodes[nodoActual].addLink(gNodes[vecino]);
