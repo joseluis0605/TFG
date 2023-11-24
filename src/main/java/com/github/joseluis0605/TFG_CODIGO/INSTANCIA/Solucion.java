@@ -23,9 +23,14 @@ public class Solucion {
             this.grafoResuelto[i]= new HashSet<>();
             this.grafoResuelto[i].addAll(this.instanciaOriginal.getGrafo()[i]);
         }
+    }
 
-
-
+    public void mostrarSolucion(){
+        System.out.println("separator-> "+separator);
+        System.out.println("grafo resultante: ");
+        for (Set<Integer> aristas: grafoResuelto){
+            System.out.println(aristas);
+        }
     }
 
     public void addNodo(int nodo){
