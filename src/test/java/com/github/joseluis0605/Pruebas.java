@@ -1,5 +1,6 @@
 package com.github.joseluis0605;
 
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorBT;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
@@ -28,24 +29,25 @@ public class Pruebas {
         solucion.addNodo(7);
 
         Set<Integer> mejorada= MejoraSolucion.mejorarSolucion(solucion, instancia);
-
         Set<Integer> mejoraSolucion= Set.of(4,5);
-
         assert mejorada.equals(mejoraSolucion);
     }
 
     @Test
     public void testOrdenarListaFile(){
         List<String> listado= FileNameList.getFileNameList();
-
         List<String> ordenado= FileNameList.getFileNameList();
         Collections.sort(ordenado);
 
         assert listado.equals(ordenado);
-
         for (String nombre: ordenado){
             System.out.println(nombre);
         }
+    }
 
+    @Test
+    public void BT_granFichero(){
+        CargadorBT cargadorBT= new CargadorBT();
+        cargadorBT.resolucion();
     }
 }

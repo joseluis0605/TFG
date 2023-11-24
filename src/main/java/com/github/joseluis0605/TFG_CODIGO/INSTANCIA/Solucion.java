@@ -11,25 +11,23 @@ public class Solucion {
  */
 
     private Set<Integer> solucion;
+    private Instancia instanciaOriginal;
+    private Set[] grafoResuelto;
 
-    public Set<Integer> getSolucion() {
-        return solucion;
-    }
 
-    public void setSolucion(Set<Integer> solucion) {
-        this.solucion = solucion;
-    }
-
-    public Solucion(){
+    public Solucion(Instancia instanciaOriginal){
         this.solucion= new HashSet<>();
+        this.instanciaOriginal= instanciaOriginal;
+
+        for (int i = 0; i < instanciaOriginal.getNumeroNodos(); i++) {
+            this.grafoResuelto[i]= new HashSet<>();
+        }
+
+
     }
 
     public void addNodo(int nodo){
         solucion.add(nodo);
-    }
-
-    public void mostrarSolcion(){
-        System.out.println(solucion.size());
     }
 
     public boolean existElement(int nodoRandom) {
@@ -40,7 +38,5 @@ public class Solucion {
         return this.solucion.size();
     }
 
-    public void mostrar(){
-        System.out.println(solucion);
-    }
+
 }

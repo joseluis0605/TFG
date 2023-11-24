@@ -16,7 +16,7 @@ import java.util.List;
 public class CargadorBT {
 
     public void resolucion(){
-        String primero= FileNameList.getFileNameList().get(0);
+        String primero= FileNameList.getFileNameList().get(1);
         List<String> contenido= CargadorFile.leerFile(primero);
 
         //creamos la instancia
