@@ -12,7 +12,7 @@ public class Instancia {
     ELEMENTOS INMUTABLES-> LOS QUE NO SE PUEDEN TOCAR
  */
 
-    private Set<Integer> grafo[];
+    private Set<Integer>[] grafo;
     private int numeroNodos;
     private double alpha;
     private double tamComponenteConexa;
@@ -26,18 +26,6 @@ public class Instancia {
         crearGrafo(contenidoFichero);
     }
 
-    //COPIAMOS UN GRAFO EN OTRO GRAFO
-   public Instancia (Instancia otraInstancia){
-       this.numeroNodos= otraInstancia.numeroNodos;
-       this.alpha= otraInstancia.alpha;
-       this.tamComponenteConexa= otraInstancia.tamComponenteConexa;
-       this.grafo=new Set[numeroNodos];
-       iniciarGrafo();
-       for (int i = 0; i < this.numeroNodos; i++) {
-           this.grafo[i].addAll(otraInstancia.getGrafo()[i]);
-       }
-   }
-
     private void primeraLinea(String linea){
         String array[]= linea.split(" ");
         int nodos= Integer.parseInt(array[0]);
@@ -46,14 +34,12 @@ public class Instancia {
         setAlpha(alpha);
     }
 
-    // inicializamos el grafo
     private void iniciarGrafo() {
         for (int i = 0; i < this.numeroNodos; i++) {
             grafo[i]= new HashSet<>();
         }
     }
 
-    // creamos el grafo pasandole una lista de string que son las aristas
     private void crearGrafo(List<String> aristas) {
         for (String pareja: aristas ) {
             String array[]= pareja.split(" ");
