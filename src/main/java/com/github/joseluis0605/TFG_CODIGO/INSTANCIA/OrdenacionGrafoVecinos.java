@@ -11,12 +11,12 @@ public class OrdenacionGrafoVecinos {
     de mas aristas que lleguen a un nodo a menos aristas
      */
 
-    public static List<Tupla> ordenarMasMenosGrafo(Instancia instancia){
+    public static List<Tupla> ordenarMasMenosGrafo(Solucion solucion){
 
         List<Tupla> listado= new ArrayList<>();
 
-        for (int i = 0; i < instancia.getNumeroNodos(); i++) {
-            int tam= instancia.getGrafoCopia()[i].size();
+        for (int i = 0; i < solucion.getInstanciaOriginal().getNumeroNodos(); i++) {
+            int tam= solucion.getGrafoResuelto()[i].size();
             Tupla tupla= new Tupla(i, tam);
             listado.add(tupla);
         }

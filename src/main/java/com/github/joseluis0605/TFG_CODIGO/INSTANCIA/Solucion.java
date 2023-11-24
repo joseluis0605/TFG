@@ -1,6 +1,8 @@
 package com.github.joseluis0605.TFG_CODIGO.INSTANCIA;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Solucion {
@@ -46,4 +48,47 @@ public class Solucion {
     }
 
 
+    //getter and setter
+
+
+    public Set<Integer> getSeparator() {
+        return separator;
+    }
+
+    public void setSeparator(Set<Integer> separator) {
+        this.separator = separator;
+    }
+
+    public Instancia getInstanciaOriginal() {
+        return instanciaOriginal;
+    }
+
+    public void setInstanciaOriginal(Instancia instanciaOriginal) {
+        this.instanciaOriginal = instanciaOriginal;
+    }
+
+    public Set<Integer>[] getGrafoResuelto() {
+        return grafoResuelto;
+    }
+
+    public void setGrafoResuelto(Set<Integer>[] grafoResuelto) {
+        this.grafoResuelto = grafoResuelto;
+    }
+
+    //equals and hashcode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Solucion solucion = (Solucion) o;
+        return Objects.equals(separator, solucion.separator) && Objects.equals(instanciaOriginal, solucion.instanciaOriginal) && Arrays.equals(grafoResuelto, solucion.grafoResuelto);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(separator, instanciaOriginal);
+        result = 31 * result + Arrays.hashCode(grafoResuelto);
+        return result;
+    }
 }
