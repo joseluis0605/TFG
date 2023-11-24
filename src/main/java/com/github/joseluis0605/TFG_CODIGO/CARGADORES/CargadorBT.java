@@ -2,8 +2,6 @@ package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.BT;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ContadorSoluciones;
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.RutaImagenes;
 import com.github.joseluis0605.TFG_CODIGO.GENERADORES.GenDOT;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
@@ -13,15 +11,10 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Tupla;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CargadorBT {
+public class CargadorBT extends CargadorExperimento{
 
-    public void resolucion(){
-        String primero= FileNameList.getFileNameList().get(1);
-        List<String> contenido= CargadorFile.leerFile(primero);
-
-        //creamos la instancia
-        Instancia instancia= new Instancia(contenido);
-
+    public void cargarExperimento(){
+        Instancia instancia= generarListaInstancia().get(0);
         //nuestra lista va a ser de tuplas, donde tengamos el numero de nodos y sus aristas
         List<Tupla> listado= new ArrayList<>();
         for (int i = 0; i < instancia.getNumeroNodos(); i++) {
@@ -38,11 +31,27 @@ public class CargadorBT {
         }
 
         String ruta= RutaImagenes.getRuta()+"BT_grafoPequeño";
-        GenDOT.writeSolutionToDisk(instancia, new Solucion(), ruta, primero);
+        GenDOT.writeSolutionToDisk(new Solucion(instancia), ruta, instancia.getFileName());
 
         int etapa=0;
         ContadorSoluciones contadorSoluciones= new ContadorSoluciones();
-        BT.resolucion(solucion, listado, instancia,etapa, instancia.getNumeroNodos(), contadorSoluciones);
+        Solucion solucionGrafo= new Solucion(instancia);
+        BT.resolucion(solucion, listado, solucionGrafo,etapa, instancia.getNumeroNodos(), contadorSoluciones);
         System.out.println("soluciones generadas: "+contadorSoluciones.getContador());
+    }
+
+    @Override
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora) {
+
+    }
+
+    @Override
+    protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {
+
+    }
+
+    @Override
+    protected void generarImagen(Solucion mejorSolucionArray, String nombreFichero) {
+
     }
 }

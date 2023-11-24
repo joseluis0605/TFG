@@ -10,12 +10,14 @@ public class Instancia {
     ELEMENTOS INMUTABLES-> LOS QUE NO SE PUEDEN TOCAR
  */
 
+    private String fileName;
     private Set<Integer>[] grafo;
     private int numeroNodos;
     private double alpha;
     private double tamComponenteConexa;
 
-    public Instancia(List<String> contenidoFichero){
+    public Instancia(List<String> contenidoFichero, String fileName){
+        this.fileName= fileName;
         primeraLinea(contenidoFichero.get(0));
         contenidoFichero.remove(0);
         this.grafo=new Set[numeroNodos];
@@ -80,6 +82,18 @@ public class Instancia {
 
     public double getTamComponenteConexa() {
         return tamComponenteConexa;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setTamComponenteConexa(double tamComponenteConexa) {
+        this.tamComponenteConexa = tamComponenteConexa;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     //equals and hashcode

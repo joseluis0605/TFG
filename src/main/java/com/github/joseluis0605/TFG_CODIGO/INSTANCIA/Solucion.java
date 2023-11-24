@@ -27,6 +27,48 @@ public class Solucion {
         }
     }
 
+    public Solucion(){
+        this.separator = new HashSet<>();
+        this.instanciaOriginal= null;
+        this.grafoResuelto= null;
+
+    }
+
+    public void restablecerSolucion(){
+        this.separator = new HashSet<>();
+        for (int i = 0; i < instanciaOriginal.getNumeroNodos(); i++) {
+            this.grafoResuelto[i]= new HashSet<>();
+            this.grafoResuelto[i].addAll(this.instanciaOriginal.getGrafo()[i]);
+        }
+    }
+
+    public void restablecerGrafo(){
+        for (int i = 0; i < instanciaOriginal.getNumeroNodos(); i++) {
+            this.grafoResuelto[i]= new HashSet<>();
+            this.grafoResuelto[i].addAll(this.instanciaOriginal.getGrafo()[i]);
+        }
+    }
+
+    public void eliminarNodo(int nodo){
+        for (int i = 0; i < this.instanciaOriginal.getNumeroNodos(); i++) {
+            if (this.grafoResuelto[i].contains(nodo)){
+                this.grafoResuelto[i].remove(nodo);
+            }
+        }
+        this.grafoResuelto[nodo].clear();
+    }
+
+
+    public void copiarSolucion(Solucion otraSolucion){
+        this.separator.addAll(otraSolucion.getSeparator());
+        this.instanciaOriginal= otraSolucion.getInstanciaOriginal();
+
+        for (int i = 0; i < otraSolucion.getInstanciaOriginal().getNumeroNodos(); i++) {
+            this.grafoResuelto[i]= new HashSet<>();
+            this.grafoResuelto[i].addAll(otraSolucion.getGrafoResuelto()[i]);
+        }
+    }
+
     public void mostrarSolucion(){
         System.out.println("separator-> "+separator);
         System.out.println("grafo resultante: ");

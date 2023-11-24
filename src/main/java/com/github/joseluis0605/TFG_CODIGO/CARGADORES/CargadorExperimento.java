@@ -1,10 +1,29 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
+import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
+import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.NumeroComponentesConexas;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class CargadorExperimento {
+
+    protected List<Instancia> generarListaInstancia(){
+        List<Instancia> listaInstancias= new ArrayList<>();
+        List<String> nombresFicheros= FileNameList.getFileNameList();
+
+        for (String nombre: nombresFicheros){
+            List<String> contenido= CargadorFile.leerFile(nombre);
+            Instancia instancia= new Instancia(contenido, nombre);
+            listaInstancias.add(instancia);
+        }
+        return listaInstancias;
+    }
+
+    public abstract void cargarExperimento();
 
     //sacar el tiempo de ejecucion inicial y final
     public long getTime(){
@@ -23,9 +42,7 @@ public abstract class CargadorExperimento {
 
     protected abstract void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion);
 
-    protected abstract void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero);
-
-    public abstract void resolucion();
+    protected abstract void generarImagen(Solucion mejorSolucionArray, String nombreFichero);
 
     protected boolean esComponenteConexa(Instancia instancia){
         return NumeroComponentesConexas.numeroComponentesConexas(instancia)==1;

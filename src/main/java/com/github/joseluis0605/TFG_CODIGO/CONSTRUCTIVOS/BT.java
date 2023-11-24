@@ -2,7 +2,7 @@ package com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS;
 
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.EscrituraCSV;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.ComprobarSolucion;
-import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Tupla;
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class BT {
 Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a que si no, el tiempo de ejecucion es infinito
  */
 
-    public static void resolucion(boolean[] solucion, List<Tupla> listado, Instancia instancia, int etapa, int numeroNodos, ContadorSoluciones contadorSoluciones) {
+    public static void resolucion(boolean[] solucion, List<Tupla> listado, Solucion instancia, int etapa, int numeroNodos, ContadorSoluciones contadorSoluciones) {
 
         int intento= 1;
         while (intento>=0){
@@ -28,9 +28,9 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
                     solucion[etapa]=false;
                 }
 
-                if (etapa==instancia.getNumeroNodos()-1){
+                if (etapa==instancia.getInstanciaOriginal().getNumeroNodos()-1){
                     Set<Integer> posibleSolucion= new HashSet<>();
-                    for (int i = 0; i < instancia.getNumeroNodos(); i++) {
+                    for (int i = 0; i < instancia.getInstanciaOriginal().getNumeroNodos(); i++) {
                         if (solucion[i]){
                             posibleSolucion.add(i);
                         }
@@ -50,7 +50,7 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
         }
     }
 
-    private static boolean esFactible(boolean[] solucion, List<Tupla> listado, Instancia instancia, int etapa, int numeroNodos, int intento) {
+    private static boolean esFactible(boolean[] solucion, List<Tupla> listado, Solucion instancia, int etapa, int numeroNodos, int intento) {
         for (int i = 0; i < numeroNodos; i++) {
             if (solucion[i]){
                 instancia.eliminarNodo(i);

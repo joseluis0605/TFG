@@ -1,9 +1,8 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.Constructivo;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoVorazOrdenacionTrasEliminacion;
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.EscrituraCSV;
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
@@ -16,30 +15,21 @@ Algoritmo usar: algortimo voraz
 tiempo: el tiempo de cada ejecucion
  */
     @Override
-    public void resolucion() {
-
+    public void cargarExperimento() {
+        List<Instancia> listadoInstancias= generarListaInstancia();
         for (int i = 0; i < 4; i++) {
-            String nombreFichero= FileNameList.getFileNameList().get(i);
-            double tiempoTotal;
-
-            //comprobamos que es una unica componente conexa
-            List<String> informacionGrafo= CargadorFile.leerFile(nombreFichero);
-            Instancia comprobadora= new Instancia(informacionGrafo);
-
-            if (super.esComponenteConexa(comprobadora)){
+            Instancia instancia= listadoInstancias.get(i);
+            if (super.esComponenteConexa(instancia)){
                 for (int j = 0; j < 1000; j++) {
-                    List<String> contenido= CargadorFile.leerFile(nombreFichero);
-                    if (contenido!=null){
-                        Instancia instancia= new Instancia(contenido);
 
-                        long inicio= super.getTime();
-                        Solucion solucion = ConstructivoVorazOrdenacionTrasEliminacion.algoritmoVorazComplejo(instancia);
-                        long fin= super.getTime();
+                    long inicio= super.getTime();
+                    Constructivo constructivo= new ConstructivoVorazOrdenacionTrasEliminacion();
+                    Solucion solucion = constructivo.construir(instancia);
+                    long fin= super.getTime();
 
-                        tiempoTotal= super.tiempoEjecucion(inicio,fin);
-                        // generamos csv
-                        escribirCSV(nombreFichero, j, solucion.size(), tiempoTotal);
-                    }
+                    double tiempoTotal= super.tiempoEjecucion(inicio,fin);
+                    // generamos csv
+                    escribirCSV(instancia.getFileName(), j, solucion.size(), tiempoTotal);
                 }
             }
         }
@@ -55,7 +45,7 @@ tiempo: el tiempo de cada ejecucion
     }
 
     @Override
-    protected void generarImagen(Instancia instanciaPuntero, Solucion mejorSolucionArray, String nombreFichero) {
-        System.out.println("En este experimento no se genera imagen");
+    protected void generarImagen(Solucion mejorSolucionArray, String nombreFichero) {
+        System.out.println("no se puede generar imagen");
     }
 }

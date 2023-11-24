@@ -20,9 +20,9 @@ Vamos a generar imagenes de los grafos que no son componentes conexas, por lo ta
 
         for (String nombreFichero : listadoFicheros){
             List<String> contenido = CargadorFile.leerFile(nombreFichero);
-            Instancia instancia= new Instancia(contenido);
+            Instancia instancia= new Instancia(contenido, nombreFichero);
             Solucion solucion= new Solucion(instancia);
-            if (NumeroComponentesConexas.numeroComponentesConexas(instancia)>1){
+            if (NumeroComponentesConexas.numeroComponentesConexas(solucion.getInstanciaOriginal())>1){
                 String ruta= RutaImagenes.getRuta()+"noComponenteConexa";
                 GenDOT.writeSolutionToDisk(solucion,  ruta, nombreFichero);
             }
