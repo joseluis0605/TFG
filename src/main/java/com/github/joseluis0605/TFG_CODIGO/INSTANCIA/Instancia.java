@@ -1,8 +1,6 @@
 package com.github.joseluis0605.TFG_CODIGO.INSTANCIA;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Instancia {
 
@@ -55,14 +53,6 @@ public class Instancia {
         this.grafo[fin].add(inicio);;
     }
 
-    public void mostrarGrafoOriginal(){
-        int nodo=0;
-        for (Set<Integer> aristas : grafo){
-            System.out.println(nodo+"-->"+aristas);
-            nodo++;
-        }
-    }
-
     // generamos los getter y los setter por defecto
     public Set<Integer>[] getGrafo() {
         return grafo;
@@ -92,7 +82,30 @@ public class Instancia {
         return tamComponenteConexa;
     }
 
-    public void setTamComponenteConexa(double tamComponenteConexa) {
-        this.tamComponenteConexa = tamComponenteConexa;
+    //equals and hashcode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Instancia instancia = (Instancia) o;
+        return numeroNodos == instancia.numeroNodos && Double.compare(instancia.alpha, alpha) == 0 && Double.compare(instancia.tamComponenteConexa, tamComponenteConexa) == 0 && Arrays.equals(grafo, instancia.grafo);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(numeroNodos, alpha, tamComponenteConexa);
+        result = 31 * result + Arrays.hashCode(grafo);
+        return result;
+    }
+
+    //mostrar grafo
+    public void mostrarInfo(){
+        System.out.println("numero nodos-> "+this.numeroNodos);
+        System.out.println("alpha-> "+this.alpha);
+        System.out.println("tamaño componente conexa-> "+this.tamComponenteConexa);
+        System.out.println("mostramos grafo....");
+        for (int i = 0; i < this.numeroNodos; i++) {
+            System.out.println(i+"->"+this.grafo[i]);
+        }
     }
 }
