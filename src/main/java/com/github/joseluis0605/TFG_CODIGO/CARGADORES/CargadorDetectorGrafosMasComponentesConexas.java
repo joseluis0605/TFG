@@ -23,7 +23,7 @@ Vamos a generar imagenes de los grafos que no son componentes conexas, por lo ta
             Instancia instancia= new Instancia(contenido);
             if (NumeroComponentesConexas.numeroComponentesConexas(instancia)>1){
                 String ruta= RutaImagenes.getRuta()+"noComponenteConexa";
-                GenDOT.writeSolutionToDisk(instancia, new Solucion(), ruta, nombreFichero);
+                GenDOT.writeSolutionToDisk(solucion,  ruta, nombreFichero);
             }
         }
     }
