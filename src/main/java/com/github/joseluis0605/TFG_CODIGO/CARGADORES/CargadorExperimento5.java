@@ -36,7 +36,7 @@ tiempo: el tiempo de cada ejecucion
     }
 
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora) {}
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoTotal) {}
 
     @Override
     protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {

@@ -30,12 +30,17 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
                 Solucion solucion = constructivo.construir(instancia);
                 long fin= super.getTime();
                 double tiempoTotal= super.tiempoEjecucion(inicio,fin);
+                double tiempoEjecucionSinMejora= tiempoTotal;
+
                 //aplicamos mejora
+                inicio= super.getTime();
                 Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
+                fin= super.getTime();
+                tiempoTotal= tiempoTotal+super.tiempoEjecucion(inicio, fin);
                 int tamMejora= mejora.size();
 
                 // generamos imagenes y csv
-                escribirCSV_Mejora(instancia.getFileName(), 1, solucion.size(), tiempoTotal, tamMejora);
+                escribirCSV_Mejora(instancia.getFileName(), 1, solucion.size(), tiempoEjecucionSinMejora, tamMejora, tiempoTotal);
                 generarImagen(solucion ,instancia.getFileName());
             }
         }
@@ -43,8 +48,8 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
 
 
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int tamMejora) {
-        String informacion = "Voraz" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion)+";"+tamMejora;
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int tamMejora, Number tiempoTotalConMejora) {
+        String informacion = "Voraz" + " ; " + nombreFichero + " ; " + iteracion + " ; " + solucion + " ; " + numberToCSV(tiempoEjecucion)+" ; "+tamMejora+" ; "+numberToCSV(tiempoTotalConMejora);
         EscrituraCSV.addCSV(informacion, "experimento2.csv");
     }
 

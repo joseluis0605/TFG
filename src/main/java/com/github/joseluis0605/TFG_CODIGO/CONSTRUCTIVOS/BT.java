@@ -37,7 +37,7 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
                     }
                     contadorSoluciones.aumentarUnidad();
                     String informacion = "Solucion posible: "+posibleSolucion;
-                    EscrituraCSV.addCSV(informacion, "experimentoBT.csv");
+                    EscrituraCSV.addCSV(informacion, "experimento6_BT.csv");
                 }else {
                     resolucion(solucion, listado, instancia, etapa+1, numeroNodos, contadorSoluciones);
                 }

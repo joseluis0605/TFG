@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class CargadorExperimento {
 
-    protected List<Instancia> generarListaInstancia(){
+    public List<Instancia> generarListaInstancia(){
         List<Instancia> listaInstancias= new ArrayList<>();
         List<String> nombresFicheros= FileNameList.getFileNameList();
 
@@ -38,7 +38,7 @@ public abstract class CargadorExperimento {
         return (fin-inicio) / 1e9;
     }
 
-    protected abstract void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora);
+    protected abstract void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoMejora);
 
     protected abstract void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion);
 

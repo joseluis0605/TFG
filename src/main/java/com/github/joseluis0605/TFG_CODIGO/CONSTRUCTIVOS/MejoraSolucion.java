@@ -13,28 +13,27 @@ Vamos a recibir una solucion de una instancia y vamos a intentar mejorarlo, elim
 
     public static Solucion mejorarSolucion (Solucion solucion){
 
-        //copiamos Solucion forma manual
-        Solucion solucionCopia= new Solucion();
-        solucionCopia.copiarSolucion(solucion);
-
         Set<Integer> nodosSolucion= new HashSet<>();
         nodosSolucion.addAll(solucion.getSeparator());
 
         for (Integer nodoCandidato : solucion.getSeparator()){
-            solucionCopia.restablecerGrafo();
+            solucion.restablecerSolucion();
+
             //eliminamos el nodo
             nodosSolucion.remove(nodoCandidato);
+
             //eliminamos del grafo, el resto de nodos, menos el seleccionado
             for (Integer nodoEliminar : nodosSolucion){
-                solucionCopia.eliminarNodo(nodoEliminar);
+                solucion.eliminarNodo(nodoEliminar);
             }
+
             //si no es factible, es decir, si es un nodo imprescindible
             if (!ComprobarSolucion.comprobarSolcion(solucion)){
                 nodosSolucion.add(nodoCandidato);
             }
         }
-        solucionCopia.setSeparator(nodosSolucion);
-        return solucionCopia;
+        solucion.setSeparator(nodosSolucion);
+        return solucion;
     }
 }
 /*

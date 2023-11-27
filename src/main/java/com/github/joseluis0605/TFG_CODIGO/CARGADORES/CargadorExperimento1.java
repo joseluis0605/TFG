@@ -29,11 +29,12 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             Solucion mejorSolucion= new Solucion();
             double tiempoTotal=0;
             int tamMejora=0;
+            double tiempoTotalMejora=0;
 
             Solucion solucionActual= new Solucion(instancia);
 
             if (super.esComponenteConexa(solucionActual.getInstanciaOriginal())){
-                for (int i = 0; i < 400.000; i++) {
+                for (int i = 0; i < 400000; i++) {
 
                     long inicio= super.getTime();
                     Constructivo constructivo= new ConstructivoRandom();
@@ -43,25 +44,27 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
 
                     if (solucion.size() < mejorSolucionNumero){
                         mejorSolucionNumero= solucion.size();
-                        mejorSolucion.copiarSolucion(solucion);
-                        mejorIteracion=i;
+                        long inicioMejora= super.getTime();
                         Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
-                        mejorSolucion.copiarSolucion(mejora);
+                        long finMejora= super.getTime();
+                        mejorIteracion=i;
                         tamMejora= mejora.size();
+                        tiempoTotalMejora= super.tiempoEjecucion(inicioMejora, finMejora);
+                        mejorSolucion.copiarSolucion(mejora);
+                        System.out.println("nos metemos");
                     }
-
                 }
-
+                tiempoTotalMejora= tiempoTotalMejora + tiempoTotal;
                 // generamos imagenes y csv
-                escribirCSV_Mejora(instancia.getFileName(), mejorIteracion, mejorSolucionNumero, tiempoTotal, tamMejora);
+                escribirCSV_Mejora(instancia.getFileName(), mejorIteracion, mejorSolucionNumero, tiempoTotal, tamMejora, tiempoTotalMejora);
                 generarImagen(mejorSolucion, instancia.getFileName());
             }
         }
     }
 
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora) {
-        String informacion = "Random" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion)+";"+mejora;
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoTotal) {
+        String informacion = "Random" + " ; " + nombreFichero + " ; " + iteracion + " ; " + solucion + " ; " + numberToCSV(tiempoEjecucion)+" ; "+mejora+" ; "+numberToCSV(tiempoTotal);
         EscrituraCSV.addCSV(informacion, "experimento1.csv");
     }
 

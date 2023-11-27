@@ -15,7 +15,7 @@ public class EscrituraCSV {
     }
 
     public static void addCSV_BT(String informacion){
-        String ruta= RutaCSV.getRuta()+ "experimentoBT.csv";
+        String ruta= RutaCSV.getRuta()+ "experimento6_BT.csv";
         try{
             FileWriter escritura= new FileWriter(ruta, true);
             escritura.append(informacion);

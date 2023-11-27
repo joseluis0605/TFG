@@ -20,9 +20,13 @@ public class Solucion {
     public Solucion(Instancia instanciaOriginal){
         this.separator = new HashSet<>();
         this.instanciaOriginal= instanciaOriginal;
+        this.grafoResuelto=new Set[this.instanciaOriginal.getNumeroNodos()];
 
         for (int i = 0; i < instanciaOriginal.getNumeroNodos(); i++) {
             this.grafoResuelto[i]= new HashSet<>();
+        }
+
+        for (int i = 0; i < instanciaOriginal.getNumeroNodos(); i++) {
             this.grafoResuelto[i].addAll(this.instanciaOriginal.getGrafo()[i]);
         }
     }
@@ -62,6 +66,7 @@ public class Solucion {
     public void copiarSolucion(Solucion otraSolucion){
         this.separator.addAll(otraSolucion.getSeparator());
         this.instanciaOriginal= otraSolucion.getInstanciaOriginal();
+        this.grafoResuelto= new Set[otraSolucion.getInstanciaOriginal().getNumeroNodos()];
 
         for (int i = 0; i < otraSolucion.getInstanciaOriginal().getNumeroNodos(); i++) {
             this.grafoResuelto[i]= new HashSet<>();
