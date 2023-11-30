@@ -9,12 +9,19 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Pruebas {
+
+    @Test
+    public void comprobarTiemposMaximos(){
+        TiemposMaximos tiemposMaximos= new TiemposMaximos();
+        tiemposMaximos.leerTiemposMaximos();
+
+        for (Map.Entry<String, Number> pareja : tiemposMaximos.getMapaTiemposMaximo().entrySet()){
+            System.out.println(pareja);
+        }
+    }
 
     @Test
     public void comprobarComponentes() throws FileNotFoundException {
