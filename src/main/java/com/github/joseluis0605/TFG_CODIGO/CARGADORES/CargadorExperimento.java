@@ -47,4 +47,5 @@ public abstract class CargadorExperimento {
     protected boolean esComponenteConexa(Instancia instancia){
         return NumeroComponentesConexas.numeroComponentesConexas(instancia)==1;
     }
+
 }

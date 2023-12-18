@@ -24,24 +24,34 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
         List<Instancia> listadoInstancias= generarListaInstancia();
 
         for (Instancia instancia: listadoInstancias){
-            if (super.esComponenteConexa(instancia)){
-                long inicio= super.getTime();
-                Constructivo constructivo= new ConstructivoVoraz();
-                Solucion solucion = constructivo.construir(instancia);
-                long fin= super.getTime();
-                double tiempoTotal= super.tiempoEjecucion(inicio,fin);
-                double tiempoEjecucionSinMejora= tiempoTotal;
+            TiemposMaximos tiemposMaximos= new TiemposMaximos();
 
-                //aplicamos mejora
-                inicio= super.getTime();
-                Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
-                fin= super.getTime();
-                tiempoTotal= tiempoTotal+super.tiempoEjecucion(inicio, fin);
-                int tamMejora= mejora.size();
+            if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null){
+                double tiempoAcumulado=0;
+                boolean escrito= false;
+                while ((tiempoAcumulado/1e9)<tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
+                    long inicio= super.getTime();
+                    Constructivo constructivo= new ConstructivoVoraz();
+                    Solucion solucion = constructivo.construir(instancia);
+                    long fin= super.getTime();
+                    double tiempoTotal= super.tiempoEjecucion(inicio,fin);
+                    double tiempoEjecucionSinMejora= tiempoTotal;
 
-                // generamos imagenes y csv
-                escribirCSV_Mejora(instancia.getFileName(), 1, solucion.size(), tiempoEjecucionSinMejora, tamMejora, tiempoTotal);
-                generarImagen(solucion ,instancia.getFileName());
+                    //aplicamos mejora
+                    inicio= super.getTime();
+                    Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
+                    fin= super.getTime();
+                    tiempoTotal= tiempoTotal+super.tiempoEjecucion(inicio, fin);
+                    int tamMejora= mejora.size();
+
+                    if (!escrito){
+                        // generamos imagenes y csv
+                        escribirCSV_Mejora(instancia.getFileName(), 1, solucion.size(), tiempoEjecucionSinMejora, tamMejora, tiempoTotal);
+                        generarImagen(solucion ,instancia.getFileName());
+                        escrito= true;
+                    }
+                    tiempoAcumulado = tiempoAcumulado+tiempoTotal;
+                }
             }
         }
     }

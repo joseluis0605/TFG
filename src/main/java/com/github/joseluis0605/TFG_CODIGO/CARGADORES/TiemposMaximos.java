@@ -8,13 +8,14 @@ import java.util.*;
 
 public class TiemposMaximos {
 
-    private Map<String, Number> mapaTiemposMaximo;
+    private Map<String, Double> mapaTiemposMaximo;
 
     public TiemposMaximos (){
         this.mapaTiemposMaximo= new HashMap<>();
+        leerTiemposMaximos();
     }
 
-    public void leerTiemposMaximos(){
+    private void leerTiemposMaximos(){
         Scanner entrada= null; // puntero tipo Scanner apuntando a null (inicializar)
         String ruta= RutaTiempos.getTiemposMaximos()+"tiemposSergio.txt";
         File fichero= new File(ruta); //abrimos el fichero cuya ruta esta en path
@@ -34,7 +35,11 @@ public class TiemposMaximos {
         }
     }
 
-    public Map<String, Number> getMapaTiemposMaximo() {
+    public Map<String, Double> getMapaTiemposMaximo() {
         return mapaTiemposMaximo;
+    }
+
+    public Double getDoubleTiempoMaximo (String filename){
+        return this.mapaTiemposMaximo.get(filename);
     }
 }

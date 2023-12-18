@@ -30,12 +30,14 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             double tiempoTotal=0;
             int tamMejora=0;
             double tiempoTotalMejora=0;
+            double tiempoTotalEjecucion=0;
+            int iteracion=0;
 
             Solucion solucionActual= new Solucion(instancia);
+            TiemposMaximos tiemposMaximos= new TiemposMaximos();
 
-            if (super.esComponenteConexa(solucionActual.getInstanciaOriginal())){
-                for (int i = 0; i < 400000; i++) {
-
+            if (super.esComponenteConexa(solucionActual.getInstanciaOriginal()) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null){
+                while ((tiempoTotalEjecucion/1e9)<tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
                     long inicio= super.getTime();
                     Constructivo constructivo= new ConstructivoRandom();
                     Solucion solucion = constructivo.construir(instancia);
@@ -47,13 +49,18 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
                         long inicioMejora= super.getTime();
                         Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
                         long finMejora= super.getTime();
-                        mejorIteracion=i;
+                        mejorIteracion=iteracion;
                         tamMejora= mejora.size();
                         tiempoTotalMejora= super.tiempoEjecucion(inicioMejora, finMejora);
                         mejorSolucion.copiarSolucion(mejora);
-                        System.out.println("nos metemos");
+                        tiempoTotalEjecucion= tiempoTotalEjecucion+tiempoTotalMejora;
+                    }else {
+                        tiempoTotalEjecucion= tiempoTotalEjecucion+tiempoTotal;
                     }
+
+                    iteracion++;
                 }
+
                 tiempoTotalMejora= tiempoTotalMejora + tiempoTotal;
                 // generamos imagenes y csv
                 escribirCSV_Mejora(instancia.getFileName(), mejorIteracion, mejorSolucionNumero, tiempoTotal, tamMejora, tiempoTotalMejora);

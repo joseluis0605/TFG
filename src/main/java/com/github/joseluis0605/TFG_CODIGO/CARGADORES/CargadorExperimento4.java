@@ -22,7 +22,8 @@ tiempo: el tiempo de cada ejecucion
 
         for (int i = 0; i < 4; i++) {
             Instancia instancia= listadoInstancias.get(i);
-            if (super.esComponenteConexa(instancia)){
+            TiemposMaximos tiemposMaximos= new TiemposMaximos();
+            if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null){
                 for (int j = 0; j < 1000; j++) {
                     long inicio= super.getTime();
                     Constructivo constructivo= new ConstructivoVoraz();

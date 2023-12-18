@@ -14,13 +14,33 @@ import java.util.*;
 public class Pruebas {
 
     @Test
-    public void comprobarTiemposMaximos(){
-        TiemposMaximos tiemposMaximos= new TiemposMaximos();
-        tiemposMaximos.leerTiemposMaximos();
+    public void experimento1(){
+        CargadorExperimento experimento1= new CargadorExperimento1();
+        experimento1.cargarExperimento();
+    }
 
-        for (Map.Entry<String, Number> pareja : tiemposMaximos.getMapaTiemposMaximo().entrySet()){
-            System.out.println(pareja);
-        }
+    @Test
+    public void experimento2(){
+        CargadorExperimento experimento2= new CargadorExperimento2();
+        experimento2.cargarExperimento();
+    }
+
+    @Test
+    public void experimento3(){
+        CargadorExperimento experimento3= new CargadorExperimento3();
+        experimento3.cargarExperimento();
+    }
+
+    @Test
+    public void experimento4(){
+        CargadorExperimento experimento4= new CargadorExperimento4();
+        experimento4.cargarExperimento();
+    }
+
+    @Test
+    public void experimento5(){
+        CargadorExperimento experimento5= new CargadorExperimento5();
+        experimento5.cargarExperimento();
     }
 
     @Test
