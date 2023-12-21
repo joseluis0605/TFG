@@ -37,7 +37,7 @@ tiempo: el tiempo de cada ejecucion
     }
 
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoTotal) {}
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, int mejora, Number tiempoTotal) {}
 
     @Override
     protected void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion) {
@@ -49,4 +49,7 @@ tiempo: el tiempo de cada ejecucion
     protected void generarImagen(Solucion mejorSolucionArray, String nombreFichero) {
         System.out.println("no se puede generar imagen");
     }
+
+    @Override
+    protected void generarImagenMejorada(Solucion mejorSolucionArray, String nombreFichero) {}
 }

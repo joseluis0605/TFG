@@ -15,10 +15,12 @@ public class Solucion {
     private Set<Integer> separator;
     private Instancia instanciaOriginal;
     private Set<Integer>[] grafoResuelto;
+    private int tamSolucion;
 
 
     public Solucion(Instancia instanciaOriginal){
         this.separator = new HashSet<>();
+        this.tamSolucion=0;
         this.instanciaOriginal= instanciaOriginal;
         this.grafoResuelto=new Set[this.instanciaOriginal.getNumeroNodos()];
 
@@ -35,6 +37,7 @@ public class Solucion {
         this.separator = new HashSet<>();
         this.instanciaOriginal= null;
         this.grafoResuelto= null;
+        this.tamSolucion=0;
 
     }
 
@@ -44,6 +47,7 @@ public class Solucion {
             this.grafoResuelto[i]= new HashSet<>();
             this.grafoResuelto[i].addAll(this.instanciaOriginal.getGrafo()[i]);
         }
+        this.tamSolucion=0;
     }
 
     public void restablecerGrafo(){
@@ -62,9 +66,10 @@ public class Solucion {
         this.grafoResuelto[nodo].clear();
     }
 
-
     public void copiarSolucion(Solucion otraSolucion){
+        restablecerSolucion();
         this.separator.addAll(otraSolucion.getSeparator());
+        this.tamSolucion= this.separator.size();
         this.instanciaOriginal= otraSolucion.getInstanciaOriginal();
         this.grafoResuelto= new Set[otraSolucion.getInstanciaOriginal().getNumeroNodos()];
 
@@ -80,6 +85,16 @@ public class Solucion {
         for (Set<Integer> aristas: grafoResuelto){
             System.out.println(aristas);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Solucion{" +
+                "separator=" + separator +
+                ", instanciaOriginal=" + instanciaOriginal +
+                ", grafoResuelto=" + Arrays.toString(grafoResuelto) +
+                ", tamSolucion=" + tamSolucion +
+                '}';
     }
 
     public void addNodo(int nodo){
@@ -120,6 +135,14 @@ public class Solucion {
 
     public void setGrafoResuelto(Set<Integer>[] grafoResuelto) {
         this.grafoResuelto = grafoResuelto;
+    }
+
+    public int getTamSolucion() {
+        return tamSolucion;
+    }
+
+    public void setTamSolucion(int tamSolucion) {
+        this.tamSolucion = tamSolucion;
     }
 
     //equals and hashcode

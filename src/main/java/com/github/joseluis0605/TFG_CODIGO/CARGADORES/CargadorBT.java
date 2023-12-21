@@ -41,7 +41,7 @@ public class CargadorBT extends CargadorExperimento{
     }
 
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoTotal) {
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion,  int mejora, Number tiempoTotal) {
 
     }
 
@@ -54,4 +54,7 @@ public class CargadorBT extends CargadorExperimento{
     protected void generarImagen(Solucion mejorSolucionArray, String nombreFichero) {
 
     }
+
+    @Override
+    protected void generarImagenMejorada(Solucion mejorSolucionArray, String nombreFichero) {}
 }

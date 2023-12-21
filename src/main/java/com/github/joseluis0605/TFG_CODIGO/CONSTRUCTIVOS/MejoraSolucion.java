@@ -16,24 +16,26 @@ Vamos a recibir una solucion de una instancia y vamos a intentar mejorarlo, elim
         Set<Integer> nodosSolucion= new HashSet<>();
         nodosSolucion.addAll(solucion.getSeparator());
 
+        Solucion solucionMejorada= new Solucion(solucion.getInstanciaOriginal());
+
         for (Integer nodoCandidato : solucion.getSeparator()){
-            solucion.restablecerSolucion();
+            solucionMejorada.restablecerSolucion();
 
             //eliminamos el nodo
             nodosSolucion.remove(nodoCandidato);
 
             //eliminamos del grafo, el resto de nodos, menos el seleccionado
             for (Integer nodoEliminar : nodosSolucion){
-                solucion.eliminarNodo(nodoEliminar);
+                solucionMejorada.eliminarNodo(nodoEliminar);
             }
 
             //si no es factible, es decir, si es un nodo imprescindible
-            if (!ComprobarSolucion.comprobarSolcion(solucion)){
+            if (!ComprobarSolucion.comprobarSolcion(solucionMejorada)){
                 nodosSolucion.add(nodoCandidato);
             }
         }
-        solucion.setSeparator(nodosSolucion);
-        return solucion;
+        solucionMejorada.setSeparator(nodosSolucion);
+        return solucionMejorada;
     }
 }
 /*

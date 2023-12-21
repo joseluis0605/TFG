@@ -147,6 +147,15 @@ public class Pruebas {
         cargadorExperimento.cargarExperimento();
     }
 
-
-
+    @Test
+    public void probarTiempos(){
+        long inicio= System.nanoTime();
+        System.out.println("probando....");
+        long fin= System.nanoTime();
+        CargadorExperimento cargadorExperimento= new CargadorExperimento1();
+        double tiempoEjecucion= cargadorExperimento.tiempoEjecucion(inicio, fin);
+        System.out.println(tiempoEjecucion);
+        System.out.println(inicio);
+        System.out.println(fin);
+    }
 }

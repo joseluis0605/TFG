@@ -122,4 +122,15 @@ public class Instancia {
             System.out.println(i+"->"+this.grafo[i]);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Instancia{" +
+                "fileName='" + fileName + '\'' +
+                ", grafo=" + Arrays.toString(grafo) +
+                ", numeroNodos=" + numeroNodos +
+                ", alpha=" + alpha +
+                ", tamComponenteConexa=" + tamComponenteConexa +
+                '}';
+    }
 }

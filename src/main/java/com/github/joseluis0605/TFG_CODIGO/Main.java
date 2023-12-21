@@ -1,22 +1,31 @@
 package com.github.joseluis0605.TFG_CODIGO;
 
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorExperimento;
+import com.github.joseluis0605.TFG_CODIGO.CARGADORES.CargadorExperimento1;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.Constructivo;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoRandom;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
+
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        //DetectorComponentesConexas.detectorComponentesConexas();
-/*
-        CargadorExperimento cargadorExperimento1= new CargadorExperimento1();
-        CargadorExperimento cargadorExperimento2= new CargadorExperimento2();
-        CargadorExperimento cargadorExperimento3= new CargadorExperimento3();
-        CargadorExperimento cargadorExperimento4= new CargadorExperimento4();
-        CargadorExperimento cargadorExperimento5= new CargadorExperimento5();
+        CargadorExperimento cargadorExperimento= new CargadorExperimento1();
+        List<Instancia> listadoInstancias= cargadorExperimento.generarListaInstancia();
 
-        cargadorExperimento1.resolucion();
-        cargadorExperimento2.resolucion();
-        cargadorExperimento3.resolucion();
-        cargadorExperimento4.resolucion();
-        cargadorExperimento5.resolucion();
- */
+        Instancia instancia1 = listadoInstancias.get(0);
+
+        Constructivo constructivo1= new ConstructivoRandom();
+        Solucion solucionActual= constructivo1.construir(instancia1);
+
+        System.out.println(solucionActual);
+
+        Solucion solucionMejor= MejoraSolucion.mejorarSolucion(solucionActual);
+        System.out.println(solucionMejor);
+
     }
 }

@@ -1,7 +1,5 @@
 package com.github.joseluis0605.TFG_CODIGO.CARGADORES;
 
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.RutaImagenes;
 import com.github.joseluis0605.TFG_CODIGO.GENERADORES.GenDOT;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
@@ -16,16 +14,18 @@ Vamos a generar imagenes de los grafos que no son componentes conexas, por lo ta
  */
 
     public static void detectorComponentesConexas(){
-        List<String> listadoFicheros= FileNameList.getFileNameList();
 
-        for (String nombreFichero : listadoFicheros){
-            List<String> contenido = CargadorFile.leerFile(nombreFichero);
-            Instancia instancia= new Instancia(contenido, nombreFichero);
+        CargadorExperimento cargadorExperimento= new CargadorExperimento1();
+        List<Instancia> listadoInstancias= cargadorExperimento.generarListaInstancia();
+
+        for (Instancia instancia: listadoInstancias){
             Solucion solucion= new Solucion(instancia);
             if (NumeroComponentesConexas.numeroComponentesConexas(solucion.getInstanciaOriginal())>1){
                 String ruta= RutaImagenes.getRuta()+"noComponenteConexa";
-                GenDOT.writeSolutionToDisk(solucion,  ruta, nombreFichero);
+                GenDOT.writeSolutionToDisk(solucion,  ruta, instancia.getFileName());
             }
         }
+
+
     }
 }

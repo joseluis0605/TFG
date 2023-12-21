@@ -25,41 +25,40 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
 
         for (Instancia instancia: listadoInstancias){
             TiemposMaximos tiemposMaximos= new TiemposMaximos();
-            double tiempoAcumulado=0;
-            boolean escrito= false;
-            if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null) {
-                while ((tiempoAcumulado/1e9)<tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
-                    long inicio = super.getTime();
+
+            if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName()) != null){
+                double tiempoTotal=0;
+                Solucion solucionActual=null;
+                Solucion solucionMejorada= null;
+
+                while (tiempoTotal<tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
                     Constructivo constructivo= new ConstructivoVorazOrdenacionTrasEliminacion();
-                    Solucion solucion = constructivo.construir(instancia);
-                    long fin = super.getTime();
-                    double tiempoTotal = super.tiempoEjecucion(inicio, fin);
-
-                    double tiempoSinMejora= tiempoTotal;
-                    inicio= super.getTime();
-                    Solucion mejora = MejoraSolucion.mejorarSolucion(solucion);
-                    fin= super.getTime();
-                    tiempoTotal= tiempoTotal+ super.tiempoEjecucion(inicio, fin);
-                    int tamMejora = mejora.size();
-
-                    if (!escrito){
-                        // generamos imagenes y csv
-                        escribirCSV_Mejora(instancia.getFileName(), 1, solucion.size(), tiempoSinMejora, tamMejora, tiempoTotal);
-                        generarImagen(solucion, instancia.getFileName());
-                    }
-                    tiempoAcumulado= tiempoAcumulado+tiempoTotal;
+                    long inicio= super.getTime();
+                    solucionActual= constructivo.construir(instancia);
+                    long fin= super.getTime();
+                    tiempoTotal= tiempoTotal+super.tiempoEjecucion(inicio, fin);
                 }
 
+                long inicio= super.getTime();
+                solucionMejorada= MejoraSolucion.mejorarSolucion(solucionActual);
+                long fin= super.getTime();
+                tiempoTotal= tiempoTotal+ super.tiempoEjecucion(inicio, fin);
 
+                escribirCSV_Mejora(instancia.getFileName(), 1, solucionActual.size(), solucionMejorada.size(), tiempoTotal);
+                generarImagen(solucionActual, instancia.getFileName());
+                generarImagenMejorada(solucionMejorada, instancia.getFileName());
 
             }
+
+
+
+
+
         }
-
-
     }
     @Override
-    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoTotal) {
-        String informacion = "Voraz Ordenado Tras Eliminacion" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";" + numberToCSV(tiempoEjecucion)+";"+mejora+";"+numberToCSV(tiempoTotal);
+    protected void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, int mejora, Number tiempoTotal) {
+        String informacion = "Voraz Ordenado Tras Eliminacion" + ";" + nombreFichero + ";" + iteracion + ";" + solucion + ";"+mejora+";"+numberToCSV(tiempoTotal);
         EscrituraCSV.addCSV(informacion, "experimento3.csv");
     }
 
@@ -69,6 +68,12 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
     @Override
     protected void generarImagen(Solucion mejorSolucionArray, String nombreFichero) {
         String ruta= RutaImagenes.getRuta()+"experimento3";
+        GenDOT.writeSolutionToDisk(mejorSolucionArray, ruta, nombreFichero);
+    }
+
+    @Override
+    protected void generarImagenMejorada(Solucion mejorSolucionArray, String nombreFichero) {
+        String ruta= RutaImagenes.getRuta()+"experimento3_mejor";
         GenDOT.writeSolutionToDisk(mejorSolucionArray, ruta, nombreFichero);
     }
 }

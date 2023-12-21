@@ -34,15 +34,17 @@ public abstract class CargadorExperimento {
         return String.valueOf(n).replace(".", ",");
     }
 
-    protected double tiempoEjecucion(long inicio, long fin){
+    public double tiempoEjecucion(long inicio, long fin){
         return (fin-inicio) / 1e9;
     }
 
-    protected abstract void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion, int mejora, Number tiempoMejora);
+    protected abstract void escribirCSV_Mejora(String nombreFichero, int iteracion, int solucion, int mejora, Number tiempoMejora);
 
     protected abstract void escribirCSV(String nombreFichero, int iteracion, int solucion, Number tiempoEjecucion);
 
     protected abstract void generarImagen(Solucion mejorSolucionArray, String nombreFichero);
+
+    protected abstract void generarImagenMejorada(Solucion mejorSolucionArray, String nombreFichero);
 
     protected boolean esComponenteConexa(Instancia instancia){
         return NumeroComponentesConexas.numeroComponentesConexas(instancia)==1;
