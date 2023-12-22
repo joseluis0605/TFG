@@ -8,7 +8,7 @@ public class ComprobarSolucion {
 //En esta clase vamos a comprobar que se cumple la solucion, es decir, que todas las componentes tengan tamaño maximo
 // n * alpha
 
-    public static boolean comprobarSolcion(Solucion solucion) {
+    public static boolean comprobarSolucion(Solucion solucion) {
         Set<Integer> visitado= new HashSet<>();
         for (int i = 0; i < solucion.getInstanciaOriginal().getNumeroNodos(); i++) {
             if (!visitado.contains(i)){

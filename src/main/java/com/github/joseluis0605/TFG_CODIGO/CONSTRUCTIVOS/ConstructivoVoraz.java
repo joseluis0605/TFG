@@ -10,7 +10,7 @@ public class ConstructivoVoraz extends Constructivo{
     public  Solucion construir(Instancia instancia){
         Solucion solucion= new Solucion(instancia); //creamos la solucion
         List<Tupla> listado= OrdenacionGrafoVecinos.ordenarMasMenosGrafo(solucion);
-        while (!ComprobarSolucion.comprobarSolcion(solucion)){
+        while (!ComprobarSolucion.comprobarSolucion(solucion)){
             int nextNodo= listado.get(0).getNodo();
             if (!solucion.existElement(nextNodo)){
                 solucion.addNodo(nextNodo);

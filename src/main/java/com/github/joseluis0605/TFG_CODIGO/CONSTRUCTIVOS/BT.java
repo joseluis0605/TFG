@@ -56,6 +56,6 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
                 instancia.eliminarNodo(i);
             }
         }
-        return ComprobarSolucion.comprobarSolcion(instancia);
+        return ComprobarSolucion.comprobarSolucion(instancia);
     }
 }

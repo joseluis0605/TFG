@@ -25,8 +25,6 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
 
         for (Instancia instancia: listadoInstancias){
             //variables declaradas
-            double tiempoEjecucion=0;
-            double tiempoMejora;
             Solucion solucionActual;
             Solucion solucionMejor= new Solucion(instancia);
             int mejorSolucionTam=9999;
@@ -34,20 +32,14 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
             int mejorIteracion=0;
             TiemposMaximos tiemposMaximos= new TiemposMaximos();
 
-            // si componente conexa == 1
             if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName()) != null){
-                // mientras el tiempo sea menor, ejecutar el algoritmo
-                //tiempoEjecucion/1e9 < )
                 double tiempoMaximoInstancia= tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName());
-                while ((tiempoEjecucion) < tiempoMaximoInstancia){
+                Constructivo constructivo= new ConstructivoRandom();
 
-                    Constructivo constructivo= new ConstructivoRandom();
+                long inicio = System.nanoTime();
+                while ((System.nanoTime()- inicio)/1e9d < tiempoMaximoInstancia){
 
-                    long tiempoInicio= super.getTime();
                     solucionActual = constructivo.construir(instancia);
-                    long tiempoFin= super.getTime();
-                    tiempoEjecucion= tiempoEjecucion + super.tiempoEjecucion(tiempoInicio, tiempoFin);
-
 
                     if (solucionActual.size() < mejorSolucionTam){
                         solucionMejor.copiarSolucion(solucionActual);
@@ -55,23 +47,18 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
                         mejorSolucionTam= solucionMejor.size();
                     }
                     iteracion++;
-                    System.out.println(instancia.getFileName()+" "+tiempoEjecucion+" --> "+tiempoMaximoInstancia);
                 }
+                //ComprobarComponentesConexas.comprobarComponentesConexas(solucionMejor);
 
-                // una vez que termine, vamos a realizar la mejora
-                long tiempoInicio= super.getTime();
                 Solucion solucionMejorada = MejoraSolucion.mejorarSolucion(solucionMejor);
-                long tiempoFin= super.getTime();
-                tiempoMejora= super.tiempoEjecucion(tiempoInicio, tiempoFin);
+                //ComprobarComponentesConexas.comprobarComponentesConexas(solucionMejorada);
 
-                //vamos a buscar siempre una solucion mejorada
-                tiempoEjecucion= tiempoEjecucion+ tiempoMejora;
-
+                double tiempoTotal= (System.nanoTime()- inicio)/1e9d;
 
                 //escribimos y generamos imagenes
-                escribirCSV_Mejora(instancia.getFileName(), mejorIteracion, solucionMejor.size(), solucionMejorada.size(), tiempoEjecucion);
+                escribirCSV_Mejora(instancia.getFileName(), mejorIteracion, solucionMejor.size(), solucionMejorada.size(), tiempoTotal);
                 generarImagen(solucionMejor, instancia.getFileName());
-                generarImagen(solucionMejorada, instancia.getFileName());
+                generarImagenMejorada(solucionMejorada, instancia.getFileName());
             }
         }
     }

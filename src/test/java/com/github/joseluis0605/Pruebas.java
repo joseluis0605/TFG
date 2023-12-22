@@ -1,15 +1,20 @@
 package com.github.joseluis0605;
 
 import com.github.joseluis0605.TFG_CODIGO.CARGADORES.*;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.Constructivo;
+import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoRandom;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.ComprobarComponentesConexas;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Pruebas {
 
@@ -115,47 +120,33 @@ public class Pruebas {
     @Test
     public void pruebaMejora(){
         CargadorExperimento cargadorExperimento= new CargadorExperimento1();
-        Instancia instancia1= cargadorExperimento.generarListaInstancia().get(0);
+        List<Instancia> listado= cargadorExperimento.generarListaInstancia();
+       Solucion instanciaSolucion= null;
+        for (Instancia instancia1: listado){
+            if (instancia1.getFileName().equals("erdos_renyi_100_0.05_0.2_3.txt")){
+                instanciaSolucion= new Solucion(instancia1);
+            }
+        }
+        Constructivo constructivo= new ConstructivoRandom();
+        Solucion solucion1= constructivo.construir(instanciaSolucion.getInstanciaOriginal());
+        ComprobarComponentesConexas.comprobarComponentesConexas(solucion1);
 
-        Solucion solucion= new Solucion(instancia1);
-        solucion.eliminarNodo(4);
-        solucion.eliminarNodo(6);
-        solucion.eliminarNodo(7);
+        Solucion solucionMejor= MejoraSolucion.mejorarSolucion(solucion1);
+        ComprobarComponentesConexas.comprobarComponentesConexas(solucionMejor);
 
-        Set<Integer> conjunto= Set.of(4,6,7);
-        solucion.setSeparator(conjunto);
-
-        Solucion mejora= MejoraSolucion.mejorarSolucion(solucion);
-        System.out.println(mejora.getSeparator());
     }
 
     @Test
-    public void experimentoRandom(){
+    public void pruebaComprobarSolucion(){
         CargadorExperimento cargadorExperimento= new CargadorExperimento1();
-        cargadorExperimento.cargarExperimento();
+        List<Instancia> listado= cargadorExperimento.generarListaInstancia();
+        for (Instancia instancia: listado){
+            Constructivo constructivo= new ConstructivoRandom();
+            Solucion solucion= constructivo.construir(instancia);
+            ComprobarComponentesConexas.comprobarComponentesConexas(solucion);
+            Scanner input= new Scanner(System.in);
+            input.nextLine();
+        }
     }
 
-    @Test
-    public void experimentoVoraz(){
-        CargadorExperimento cargadorExperimento= new CargadorExperimento2();
-        cargadorExperimento.cargarExperimento();
-    }
-
-    @Test
-    public void experimentoVorazOrdenacion(){
-        CargadorExperimento cargadorExperimento= new CargadorExperimento3();
-        cargadorExperimento.cargarExperimento();
-    }
-
-    @Test
-    public void probarTiempos(){
-        long inicio= System.nanoTime();
-        System.out.println("probando....");
-        long fin= System.nanoTime();
-        CargadorExperimento cargadorExperimento= new CargadorExperimento1();
-        double tiempoEjecucion= cargadorExperimento.tiempoEjecucion(inicio, fin);
-        System.out.println(tiempoEjecucion);
-        System.out.println(inicio);
-        System.out.println(fin);
-    }
 }

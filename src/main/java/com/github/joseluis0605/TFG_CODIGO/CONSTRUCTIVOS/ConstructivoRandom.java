@@ -17,7 +17,7 @@ public class ConstructivoRandom extends Constructivo{
 
     public Solucion construir(Instancia instancia){
         Solucion solucion= new Solucion(instancia); //creamos la solucion
-        while (!ComprobarSolucion.comprobarSolcion(solucion)){
+        while (!ComprobarSolucion.comprobarSolucion(solucion)){
             java.util.Random random= new java.util.Random();
             int nodoRandom= random.nextInt(instancia.getNumeroNodos());
             if (!solucion.existElement(nodoRandom)){

@@ -9,7 +9,7 @@ public class ConstructivoVorazOrdenacionTrasEliminacion extends Constructivo{
 
     public Solucion construir(Instancia instancia){
         Solucion solucion= new Solucion(instancia); //creamos la solucion
-        while (!ComprobarSolucion.comprobarSolcion(solucion)){
+        while (!ComprobarSolucion.comprobarSolucion(solucion)){
             List<Tupla> listado= OrdenacionGrafoVecinos.ordenarMasMenosGrafo(solucion);
             int nextNodo= listado.get(0).getNodo();
             if (!solucion.existElement(nextNodo)){

@@ -24,14 +24,11 @@ tiempo: el tiempo de cada ejecucion
             Instancia instancia= listadoInstancias.get(i);
             TiemposMaximos tiemposMaximos= new TiemposMaximos();
             if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null){
+                Constructivo constructivo= new ConstructivoVoraz();
                 for (int j = 0; j < 1000; j++) {
-                    long inicio= super.getTime();
-                    Constructivo constructivo= new ConstructivoVoraz();
+                    long inicio= System.nanoTime();
                     Solucion solucion = constructivo.construir(instancia);
-                    long fin= super.getTime();
-
-                    double tiempoTotal= super.tiempoEjecucion(inicio,fin);
-
+                    double tiempoTotal= (System.nanoTime()-inicio)/1e9d;
                     // generamos csv
                     escribirCSV(instancia.getFileName(), j, solucion.size(), tiempoTotal);
                 }

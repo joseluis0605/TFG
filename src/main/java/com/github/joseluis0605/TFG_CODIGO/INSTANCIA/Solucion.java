@@ -63,11 +63,11 @@ public class Solucion {
                 this.grafoResuelto[i].remove(nodo);
             }
         }
-        this.grafoResuelto[nodo].clear();
+        this.grafoResuelto[nodo]= new HashSet<>();
     }
 
     public void copiarSolucion(Solucion otraSolucion){
-        restablecerSolucion();
+        this.separator= new HashSet<>();
         this.separator.addAll(otraSolucion.getSeparator());
         this.tamSolucion= this.separator.size();
         this.instanciaOriginal= otraSolucion.getInstanciaOriginal();

@@ -27,33 +27,20 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
             TiemposMaximos tiemposMaximos= new TiemposMaximos();
 
             if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName()) != null){
-                double tiempoTotal=0;
-                Solucion solucionActual=null;
-                Solucion solucionMejorada= null;
+                Solucion solucionActual = null;
+                Constructivo constructivo= new ConstructivoVorazOrdenacionTrasEliminacion();
 
-                while (tiempoTotal<tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
-                    Constructivo constructivo= new ConstructivoVorazOrdenacionTrasEliminacion();
-                    long inicio= super.getTime();
+                long inicio= System.nanoTime();
+                while ((System.nanoTime()-inicio)/1e9d <tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
                     solucionActual= constructivo.construir(instancia);
-                    long fin= super.getTime();
-                    tiempoTotal= tiempoTotal+super.tiempoEjecucion(inicio, fin);
                 }
-
-                long inicio= super.getTime();
-                solucionMejorada= MejoraSolucion.mejorarSolucion(solucionActual);
-                long fin= super.getTime();
-                tiempoTotal= tiempoTotal+ super.tiempoEjecucion(inicio, fin);
+                Solucion solucionMejorada= MejoraSolucion.mejorarSolucion(solucionActual);
+                double tiempoTotal= (System.nanoTime()-inicio)/1e9d;
 
                 escribirCSV_Mejora(instancia.getFileName(), 1, solucionActual.size(), solucionMejorada.size(), tiempoTotal);
                 generarImagen(solucionActual, instancia.getFileName());
                 generarImagenMejorada(solucionMejorada, instancia.getFileName());
-
             }
-
-
-
-
-
         }
     }
     @Override

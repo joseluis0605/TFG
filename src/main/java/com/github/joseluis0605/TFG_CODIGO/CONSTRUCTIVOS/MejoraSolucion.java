@@ -16,7 +16,9 @@ Vamos a recibir una solucion de una instancia y vamos a intentar mejorarlo, elim
         Set<Integer> nodosSolucion= new HashSet<>();
         nodosSolucion.addAll(solucion.getSeparator());
 
-        Solucion solucionMejorada= new Solucion(solucion.getInstanciaOriginal());
+        Solucion solucionMejorada= new Solucion();
+        solucionMejorada.copiarSolucion(solucion);
+
 
         for (Integer nodoCandidato : solucion.getSeparator()){
             solucionMejorada.restablecerSolucion();
@@ -30,7 +32,7 @@ Vamos a recibir una solucion de una instancia y vamos a intentar mejorarlo, elim
             }
 
             //si no es factible, es decir, si es un nodo imprescindible
-            if (!ComprobarSolucion.comprobarSolcion(solucionMejorada)){
+            if (!ComprobarSolucion.comprobarSolucion(solucionMejorada)){
                 nodosSolucion.add(nodoCandidato);
             }
         }
