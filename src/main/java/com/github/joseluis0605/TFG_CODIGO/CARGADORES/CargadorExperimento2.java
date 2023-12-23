@@ -29,7 +29,6 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
 
             if (super.esComponenteConexa(instancia) && tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())!=null){
                 Constructivo constructivo= new ConstructivoVoraz();
-
                 long inicio= System.nanoTime();
                 while ((System.nanoTime()-inicio)/1e9d < tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
 
