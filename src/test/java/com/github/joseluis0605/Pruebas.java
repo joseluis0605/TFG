@@ -49,6 +49,12 @@ public class Pruebas {
     }
 
     @Test
+    public void experimentoBT(){
+        CargadorExperimento experimentoBT= new CargadorBT();
+        experimentoBT.cargarExperimento();
+    }
+
+    @Test
     public void comprobarComponentes() throws FileNotFoundException {
 
         List<String> listadoNoComponentesConexas= new ArrayList<>();

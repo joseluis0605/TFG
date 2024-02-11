@@ -23,6 +23,37 @@ public abstract class CargadorExperimento {
         return listaInstancias;
     }
 
+    //solo para BT
+    public List<Instancia> generarListaInstanciaBT(){
+        List<Instancia> listaInstancias= new ArrayList<>();
+        List<String> nombresFicheros= new ArrayList<>();
+
+        nombresFicheros.add("easy_short_5.txt");
+        nombresFicheros.add("easy_short_6.txt");
+        nombresFicheros.add("easy_short_7.txt");
+        nombresFicheros.add("easy_short_8.txt");
+        nombresFicheros.add("easy_short_9.txt");
+        nombresFicheros.add("easy_short_10.txt");
+        nombresFicheros.add("easy_short_11.txt");
+        nombresFicheros.add("easy_short_12.txt");
+        nombresFicheros.add("easy_short_13.txt");
+        nombresFicheros.add("easy_short_14.txt");
+        nombresFicheros.add("easy_short_15.txt");
+        nombresFicheros.add("easy_short_16.txt");
+        nombresFicheros.add("easy_short_17.txt");
+        nombresFicheros.add("easy_short_18.txt");
+        nombresFicheros.add("easy_short_19.txt");
+
+
+
+        for (String nombre: nombresFicheros){
+            List<String> contenido= CargadorFile.leerFile(nombre);
+            Instancia instancia= new Instancia(contenido, nombre);
+            listaInstancias.add(instancia);
+        }
+        return listaInstancias;
+    }
+
     public abstract void cargarExperimento();
 
     //sacar el tiempo de ejecucion inicial y final

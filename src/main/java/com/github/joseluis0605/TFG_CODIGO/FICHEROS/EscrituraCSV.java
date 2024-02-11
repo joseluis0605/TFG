@@ -13,16 +13,4 @@ public class EscrituraCSV {
             System.out.println(e.getMessage());
         }
     }
-
-    public static void addCSV_BT(String informacion){
-        String ruta= RutaCSV.getRuta()+ "experimento6_BT.csv";
-        try{
-            FileWriter escritura= new FileWriter(ruta, true);
-            escritura.append(informacion);
-            escritura.append("\n");
-            escritura.close();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
 }

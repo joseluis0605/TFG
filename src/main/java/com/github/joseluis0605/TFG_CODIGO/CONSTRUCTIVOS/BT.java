@@ -1,6 +1,5 @@
 package com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS;
 
-import com.github.joseluis0605.TFG_CODIGO.FICHEROS.EscrituraCSV;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.ComprobarSolucion;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Tupla;
@@ -37,9 +36,6 @@ Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a
                     }
                     contadorSoluciones.aumentarUnidad();
 
-                    //esto es lo que tengo que eliminar
-                    String informacion = "Solucion posible: "+posibleSolucion;
-                    EscrituraCSV.addCSV(informacion, "experimento6_BT.csv");
                 }else {
                     resolucion(solucion, listado, instancia, etapa+1, numeroNodos, contadorSoluciones);
                 }
