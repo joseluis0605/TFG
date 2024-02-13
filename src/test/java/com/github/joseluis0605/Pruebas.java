@@ -155,4 +155,8 @@ public class Pruebas {
         }
     }
 
+    @Test
+    public void dameNombrePorInstancia(){
+        //dameNombrePorInstancia("erdos_renyi_100_0.05_0.2_3.txt");
+    }
 }

@@ -54,6 +54,20 @@ public abstract class CargadorExperimento {
         return listaInstancias;
     }
 
+    public Instancia dame_nombre_te_doy_instancia(String nombreFichero){
+
+        List<String> nombresFicheros= FileNameList.getFileNameList();
+
+        for (String nombre: nombresFicheros){
+            if (nombreFichero.equals(nombre)){
+                List<String> contenido= CargadorFile.leerFile(nombre);
+                Instancia instancia= new Instancia(contenido, nombre);
+                return instancia;
+            }
+        }
+        return null;
+    }
+
     public abstract void cargarExperimento();
 
     //sacar el tiempo de ejecucion inicial y final
