@@ -4,10 +4,9 @@ import com.github.joseluis0605.TFG_CODIGO.CARGADORES.*;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.Constructivo;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.ConstructivoRandom;
 import com.github.joseluis0605.TFG_CODIGO.CONSTRUCTIVOS.MejoraSolucion;
+import com.github.joseluis0605.TFG_CODIGO.FICHEROS.CargadorFile;
 import com.github.joseluis0605.TFG_CODIGO.FICHEROS.FileNameList;
-import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.ComprobarComponentesConexas;
-import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Instancia;
-import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
+import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.*;
 import org.junit.Test;
 
 import java.io.File;
@@ -156,7 +155,48 @@ public class Pruebas {
     }
 
     @Test
-    public void dameNombrePorInstancia(){
-        //dameNombrePorInstancia("erdos_renyi_100_0.05_0.2_3.txt");
+    public void pruebaComponenteConexa(){
+
+        //lista de instancias
+        List<Instancia> listaInstancias= new ArrayList<>();
+        List<String> nombresFicheros= FileNameList.getFileNameList();
+
+        for (String nombre: nombresFicheros){
+            List<String> contenido= CargadorFile.leerFile(nombre);
+            Instancia instancia= new Instancia(contenido, nombre);
+            listaInstancias.add(instancia);
+        }
+
+        for (Instancia instancia: listaInstancias){
+            //variables declaradas
+            Solucion solucionActual = null;
+            Solucion solucionMejor= new Solucion(instancia);
+            int mejorSolucionTam=9999;
+            int iteracion=0;
+            int mejorIteracion=0;
+
+            if (NumeroComponentesConexas.numeroComponentesConexas(instancia)==1){
+                Constructivo constructivo= new ConstructivoRandom();
+
+                System.out.println("**********************");
+                System.out.println(instancia.getFileName());
+                System.out.println("tamaño componentes conexas, maximo--> "+instancia.getTamComponenteConexa());
+                System.out.println("valor alpha--> "+instancia.getAlpha());
+                System.out.println("get numero nodos--> "+instancia.getNumeroNodos());
+
+
+                for (int i = 0; i < 1000; i++) {
+                    solucionActual = constructivo.construir(instancia);
+                    ComprobarSolucion.comprobarSolucion(solucionActual);
+                }
+                TamanoCadaComponenteConexa.comprobarSolucion(solucionActual);
+                System.out.println("numero de eliminados--> "+ solucionActual.size());
+                System.out.println("eliminados: "+solucionActual.getSeparator());
+
+
+
+                //Solucion solucionMejorada = MejoraSolucion.mejorarSolucion(solucionMejor);
+            }
+        }
     }
 }
