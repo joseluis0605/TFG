@@ -15,6 +15,7 @@ public class ComprobarComponentesConexas {
         System.out.println("Nodos eliminados---> "+solucion.getSeparator());
         System.out.println("tamaño solucion--> "+solucion.getSeparator().size());
 
+
         Set<Integer> visitados= new HashSet<>();
         visitados.addAll(solucion.getSeparator());
 

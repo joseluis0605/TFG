@@ -11,9 +11,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Pruebas {
 
@@ -192,11 +190,48 @@ public class Pruebas {
                 TamanoCadaComponenteConexa.comprobarSolucion(solucionActual);
                 System.out.println("numero de eliminados--> "+ solucionActual.size());
                 System.out.println("eliminados: "+solucionActual.getSeparator());
-
-
-
-                //Solucion solucionMejorada = MejoraSolucion.mejorarSolucion(solucionMejor);
             }
+        }
+    }
+
+    @Test
+    public void generarGrafo(){
+        //lista de instancias
+        List<String> nombresFicheros= FileNameList.getFileNameList();
+        System.out.println(nombresFicheros);
+        List<String> contenidoFile= new ArrayList<>();
+        for (String nombre : nombresFicheros){
+            if (nombre.contains("erdos_renyi_100_0.05_0.8_3.txt")){
+                contenidoFile= CargadorFile.leerFile(nombre);
+            }
+        }
+
+        if (contenidoFile!=null){
+            Instancia instancia= new Instancia(contenidoFile, "erdos_renyi_100_0.05_0.8_3.txt");
+            Solucion solucion= new Solucion(instancia);
+            Set<Integer> listadoEliminados= new HashSet<>();
+
+            listadoEliminados.add(1);
+            listadoEliminados.add(88);
+            listadoEliminados.add(78);
+            listadoEliminados.add(62);
+            listadoEliminados.add(84);
+            listadoEliminados.add(17);
+            listadoEliminados.add(65);
+            listadoEliminados.add(20);
+            listadoEliminados.add(58);
+            listadoEliminados.add(61);
+            listadoEliminados.add(56);
+            listadoEliminados.add(70);
+            listadoEliminados.add(10);
+
+            for (Integer nodoEliminar : listadoEliminados){
+                solucion.eliminarNodo(nodoEliminar);
+            }
+            solucion.setSeparator(listadoEliminados);
+
+            System.out.println("////////////////////////////////////////////////");
+            ComprobarComponentesConexas.comprobarComponentesConexas(solucion);
         }
     }
 }

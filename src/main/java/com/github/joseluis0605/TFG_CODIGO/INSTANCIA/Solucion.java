@@ -97,6 +97,12 @@ public class Solucion {
                 '}';
     }
 
+    public void mostrarSolucionTest(){
+        for (int i = 0; i <this.instanciaOriginal.getNumeroNodos(); i++) {
+            System.out.println(i+" --> "+this.grafoResuelto[i]);
+        }
+    }
+
     public void addNodo(int nodo){
         separator.add(nodo);
     }
