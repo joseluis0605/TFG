@@ -7,11 +7,6 @@ import java.util.Set;
 
 public class Solucion {
 
-/*
-    En esta clase vamos a mostrar la separator de nuestro problema.
-    En nuestro caso, la separator va a ser el tamaño del set que forman los nodos que eliminamos
- */
-
     private Set<Integer> separator;
     private Instancia instanciaOriginal;
     private Set<Integer>[] grafoResuelto;

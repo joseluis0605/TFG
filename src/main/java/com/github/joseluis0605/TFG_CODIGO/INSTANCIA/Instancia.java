@@ -4,12 +4,6 @@ import java.util.*;
 
 public class Instancia {
 
-/*
-    En esta clase vamos a almacenar el que seria nuestro grafo y su copia (creacion del grafo).
-    Ademas va a contener informacion util: numero Nodos, valor alpha y numero maximo de nodos por componente conexa
-    ELEMENTOS INMUTABLES-> LOS QUE NO SE PUEDEN TOCAR
- */
-
     private String fileName;
     private Set<Integer>[] grafo;
     private int numeroNodos;

@@ -5,8 +5,6 @@ import java.util.Set;
 
 public class ComprobarComponentesConexas {
 
-    //nos recorremos el grafo con las soluciones y vamos a mostrar las componentes conexas que se muestran y su tamaño.
-
     public static void comprobarComponentesConexas(Solucion solucion){
 
         System.out.println("/////////////// INFORMACION SOLUCION "+ solucion.getInstanciaOriginal().getFileName()+ "///////////");

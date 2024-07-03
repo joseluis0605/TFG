@@ -6,11 +6,6 @@ import java.util.List;
 
 public class OrdenacionGrafoVecinos {
 
-    /*
-    en esta clase se va a ordenar el grafo por aristas, es decir, como un voraz
-    de mas aristas que lleguen a un nodo a menos aristas
-     */
-
     public static List<Tupla> ordenarMasMenosGrafo(Solucion solucion){
 
         List<Tupla> listado= new ArrayList<>();
