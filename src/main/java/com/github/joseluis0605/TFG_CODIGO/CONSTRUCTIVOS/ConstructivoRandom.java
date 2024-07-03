@@ -8,13 +8,6 @@ import java.util.Set;
 
 public class ConstructivoRandom extends Constructivo{
 
-/*
-    Esta es la clase constructivo, donde vamos a recibir la instancia, que en nuestro caso seria un grafo (array de set)
-    y vamos a sacar una salida
-
-    El algoritmo que vamos a usar va a ser el RANDOM, donde vamos a coger los nodos al azar
- */
-
     public Solucion construir(Instancia instancia){
         Solucion solucion= new Solucion(instancia); //creamos la solucion
         while (!ComprobarSolucion.comprobarSolucion(solucion)){

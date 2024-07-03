@@ -14,9 +14,7 @@ import java.util.List;
 public class CargadorExperimento3 extends CargadorExperimento{
 
 /*
-Nuestro experimento 3 va a consistir en ejecutar 1 vez cada fichero para obtener la solucion
 Algoritmo usar: algortimo voraz con ordenacion tras eliminacion
-tiempo: tiempo que tarda cada ejecucion del algoritmo
  */
 
     public void cargarExperimento(){

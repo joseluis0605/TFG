@@ -8,9 +8,7 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 
 public class CargadorExperimento4 extends CargadorExperimento{
 /*
-Nuestro experimento 4 va a consistir en ejecutar 1000 veces cada fichero para obtener cada tiempo (4 primeras instancias)
-Algoritmo usar: algortimo voraz
-tiempo: el tiempo de cada ejecucion
+Experimento para medir la optimización 1
  */
 
     @Override

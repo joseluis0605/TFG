@@ -12,11 +12,9 @@ import com.github.joseluis0605.TFG_CODIGO.INSTANCIA.Solucion;
 import java.util.List;
 
 public class CargadorExperimento1 extends CargadorExperimento{
+
 /*
-Nuestro experimento 1 va a consistir en ejecutar 400.000 veces cada fichero para obtener el mejor tiempo
-Algoritmo usar: algortimo random
-mejor solucion: menor tamaño del set solucion
-tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
+Algoritmo Aleatorio
  */
 
     public void cargarExperimento() {
@@ -51,6 +49,7 @@ tiempo: el sumatorio de todas las iteraciones sobre la misma instancia
                 //ComprobarComponentesConexas.comprobarComponentesConexas(solucionMejor);
 
                 Solucion solucionMejorada = MejoraSolucion.mejorarSolucion(solucionMejor);
+
                 //ComprobarComponentesConexas.comprobarComponentesConexas(solucionMejorada);
 
                 double tiempoTotal= (System.nanoTime()- inicio)/1e9d;

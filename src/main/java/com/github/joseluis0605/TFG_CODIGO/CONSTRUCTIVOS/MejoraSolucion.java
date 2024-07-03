@@ -40,24 +40,3 @@ Vamos a recibir una solucion de una instancia y vamos a intentar mejorarlo, elim
         return solucionMejorada;
     }
 }
-/*
-//////////////////////
-      EJEMPLO
-//////////////////////
-
-String nombre= FileNameList.getFileNameList().get(0);
-        List<String> contenido= CargadorFile.leerFile(nombre);
-        Instancia instancia= new Instancia(contenido);
-        instancia.eliminarNodo(4);
-        instancia.eliminarNodo(6);
-        instancia.eliminarNodo(7);
-
-        Solucion solucion= new Solucion();
-        solucion.addNodo(4);
-        solucion.addNodo(6);
-        solucion.addNodo(7);
-
-        Set<Integer> mejorada= MejoraSolucion.mejorarSolucion(solucion, instancia);
-
-        System.out.println(mejorada);
- */

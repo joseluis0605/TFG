@@ -14,9 +14,7 @@ import java.util.List;
 public class CargadorExperimento2 extends CargadorExperimento {
 
 /*
-Nuestro experimento 2 va a consistir en ejecutar 1 vez cada fichero para obtener la solucion
-Algoritmo usar: algortimo voraz
-tiempo: tiempo que tarda cada ejecucion del algoritmo
+Algortimo voraz
  */
 
     @Override
@@ -31,10 +29,8 @@ tiempo: tiempo que tarda cada ejecucion del algoritmo
                 Constructivo constructivo= new ConstructivoVoraz();
                 long inicio= System.nanoTime();
                 while ((System.nanoTime()-inicio)/1e9d < tiemposMaximos.getDoubleTiempoMaximo(instancia.getFileName())){
-
                     solucionActual= constructivo.construir(instancia);
                 }
-
                 Solucion solucionMejorada= MejoraSolucion.mejorarSolucion(solucionActual);
                 double tiempoTotal= (System.nanoTime()-inicio)/1e9;
 

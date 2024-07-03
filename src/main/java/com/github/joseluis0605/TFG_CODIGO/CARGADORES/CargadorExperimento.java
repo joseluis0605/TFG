@@ -44,8 +44,6 @@ public abstract class CargadorExperimento {
         nombresFicheros.add("easy_short_18.txt");
         nombresFicheros.add("easy_short_19.txt");
 
-
-
         for (String nombre: nombresFicheros){
             List<String> contenido= CargadorFile.leerFile(nombre);
             Instancia instancia= new Instancia(contenido, nombre);

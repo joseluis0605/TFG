@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 public class BT {
-/*
-Vamos a aplicar BT para encontrar soluciones ante grafos mas pequeños, debido a que si no, el tiempo de ejecucion es infinito
- */
 
     public static void resolucion(boolean[] solucion, List<Tupla> listado, Solucion instancia, int etapa, int numeroNodos, ContadorSoluciones contadorSoluciones) {
 
